@@ -36,25 +36,26 @@ def generate_orders():
         num_boxes = b["boxes"]
         
         for _ in range(num_boxes):
-            while True:
-                has_S = random.random() < 0.50
-                has_A = random.random() < 0.50
-                has_B = random.random() < 0.30
-                has_C = random.random() < 0.05
-                if has_S or has_A or has_B or has_C:
-                    break
-                    
-            s_sku = 1 if has_S else 0
-            s_qty = random.randint(1, 20) if has_S else 0
+            has_S = random.random() < 0.50
+            has_A = random.random() < 0.50
+            has_B = random.random() < 0.30
+            has_C = random.random() < 0.05
             
-            a_sku = 1 if has_A else 0
-            a_qty = random.randint(1, 20) if has_A else 0
+            # 확률 계산 후 하나의 등급도 선택되지 않은 경우 S등급이 포함된 것으로 처리
+            if not (has_S or has_A or has_B or has_C):
+                has_S = True
+                
+            s_sku = random.randint(1, 4) if has_S else 0
+            s_qty = sum(random.randint(1, 20) for _ in range(s_sku)) if has_S else 0
             
-            b_sku = 1 if has_B else 0
-            b_qty = random.randint(1, 20) if has_B else 0
+            a_sku = random.randint(1, 4) if has_A else 0
+            a_qty = sum(random.randint(1, 20) for _ in range(a_sku)) if has_A else 0
             
-            c_sku = 1 if has_C else 0
-            c_qty = random.randint(1, 20) if has_C else 0
+            b_sku = random.randint(1, 4) if has_B else 0
+            b_qty = sum(random.randint(1, 20) for _ in range(b_sku)) if has_B else 0
+            
+            c_sku = random.randint(1, 4) if has_C else 0
+            c_qty = sum(random.randint(1, 20) for _ in range(c_sku)) if has_C else 0
             
             data.append({
                 # 엑셀과 호환되는 Datetime 형식으로 저장
