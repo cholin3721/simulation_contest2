@@ -5054,7 +5054,7 @@
 			<Parameter>
 				<Name><![CDATA[onExitTrue]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[int remain = 7branchRemainingTotal.get(agent.branchId) - 1;
+					<Code><![CDATA[int remain = branchRemainingTotal.get(agent.branchId) - 1;
 branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 				</Value>
 			</Parameter>
@@ -6396,6 +6396,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[batchSize]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[batchSizes[1]]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[permanent]]></Name>
@@ -6480,6 +6483,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[if (branchRemainingTotal.get(slotBranches[1]) == 0){ slotBranches[1] = 0; }]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onRemove]]></Name>
@@ -6541,6 +6547,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[batchSize]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[batchSizes[2]]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[permanent]]></Name>
@@ -6625,6 +6634,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[if (branchRemainingTotal.get(slotBranches[2]) == 0){ slotBranches[2] = 0; }]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onRemove]]></Name>
@@ -6686,6 +6698,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[batchSize]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[batchSizes[3]]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[permanent]]></Name>
@@ -6770,6 +6785,9 @@ branchRemainingTotal.put(agent.branchId, remain);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[if (branchRemainingTotal.get(slotBranches[3]) == 0){ slotBranches[3] = 0; }]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onRemove]]></Name>

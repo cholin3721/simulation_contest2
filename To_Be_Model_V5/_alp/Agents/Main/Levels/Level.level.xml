@@ -3069,7 +3069,7 @@
 					</ConveyorSpur>
 				</Presentation>
 			</Conveyor>
-			<Conveyor SourceId="1775469528034" TargetId="1777361394968">
+			<Conveyor SourceId="1775469528034" TargetId="1777440754071">
 				<Id>1775465684037</Id>
 				<Name><![CDATA[conveyor12]]></Name>
 				<X>470</X>
@@ -3202,6 +3202,36 @@
 					</Point>
 					<Point>
 						<X>0</X>
+						<Y>14.333</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>-10.667</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>39.333</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>17.667</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>-7.333</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>42.667</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
 						<Y>20</Y>
 						<Z>0</Z>
 					</Point>
@@ -3217,7 +3247,7 @@
 					</Point>
 				</Points>
 			</Conveyor>
-			<Conveyor SourceId="1775469519500" TargetId="1777361385031">
+			<Conveyor SourceId="1775469519500" TargetId="1777440721228">
 				<Id>1775465700307</Id>
 				<Name><![CDATA[conveyor13]]></Name>
 				<X>490</X>
@@ -3361,6 +3391,21 @@
 					<Point>
 						<X>0</X>
 						<Y>37</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>15.667</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>-9.333</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>40.667</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
@@ -3929,6 +3974,56 @@
 					<ConveyorSpur>
 						<Id>1777361394968</Id>
 						<Name><![CDATA[conveyorSpur37]]></Name>
+						<X>470</X>
+						<Y>290</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<Z>0</Z>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+						<Offset>145.0</Offset>
+						<OnRightSide>true</OnRightSide>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+					</ConveyorSpur>
+					<ConveyorSpur>
+						<Id>1777440721228</Id>
+						<Name><![CDATA[conveyorSpur38]]></Name>
+						<X>490</X>
+						<Y>290</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<Z>0</Z>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+						<Offset>125.0</Offset>
+						<OnRightSide>true</OnRightSide>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+					</ConveyorSpur>
+					<ConveyorSpur>
+						<Id>1777440754071</Id>
+						<Name><![CDATA[conveyorSpur39]]></Name>
 						<X>470</X>
 						<Y>290</Y>
 						<Label>
@@ -5368,7 +5463,7 @@
 				<LineMaterial>null</LineMaterial>
 				<FillMaterial>null</FillMaterial>
 			</ConveyorPointNode>
-			<Conveyor SourceId="1775465452116" TargetId="1777361290433">
+			<Conveyor SourceId="1775465452116" TargetId="1775465645626">
 				<Id>1775465374781</Id>
 				<Name><![CDATA[conveyor8]]></Name>
 				<X>530</X>
@@ -5510,37 +5605,82 @@
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>77.67766952966369</X>
-						<Y>17.677669529663685</Y>
+						<X>85</X>
+						<Y>0</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>62</X>
-						<Y>2</Y>
+						<X>64</X>
+						<Y>0</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>44.322</X>
-						<Y>-15.678</Y>
+						<X>39</X>
+						<Y>0</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>85.04088437845164</X>
-						<Y>11.70142500145332</Y>
+						<X>89</X>
+						<Y>0</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>81</X>
+						<X>68</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>43</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>25</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>4</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>-21</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>29</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>7</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>68</X>
+						<Y>-18</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>81.86750490563072</X>
+						<Y>27.801257358446094</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>70</X>
 						<Y>10</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>57.959115621548364</X>
-						<Y>0.29857499854668035</Y>
+						<X>56.132495094369276</X>
+						<Y>-10.801257358446094</Y>
 						<Z>0</Z>
 					</Point>
 					<Point>
-						<X>81</X>
+						<X>70</X>
 						<Y>10</Y>
 						<Z>0</Z>
 					</Point>

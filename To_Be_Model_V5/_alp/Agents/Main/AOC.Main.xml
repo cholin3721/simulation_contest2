@@ -2,6 +2,12 @@
 <ActiveObjectClass>
 	<Id>1775458701936</Id>
 	<Name><![CDATA[Main]]></Name>
+	<StartupCode><![CDATA[com.anylogic.engine.connectivity.ResultSet rs = selectResultSet("SELECT branch_id, COUNT(*) AS cnt FROM sheet1 GROUP BY branch_id;");
+try {
+    while(rs.next()) {
+        branchRemainingTotal.put(rs.getInt("branch_id"), rs.getInt("cnt"));
+    }
+} catch (Exception e) {}]]></StartupCode>
 	<Generic>false</Generic>
 	<GenericParameter>
 		<Id>1775458701941</Id>
