@@ -1809,8 +1809,8 @@
 	<Connector>
 		<Id>1777362298009</Id>
 		<Name><![CDATA[connector43]]></Name>
-		<X>0</X>
-		<Y>0</Y>
+		<X>1320</X>
+		<Y>-590</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -1840,20 +1840,20 @@
 		</TargetConnectableItemReference>
 		<Points>
 			<Point>
-				<X>1230</X>
-				<Y>-560</Y>
+				<X>0</X>
+				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>1190</X>
-				<Y>-560</Y>
+				<X>-130</X>
+				<Y>30</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362314401</Id>
 		<Name><![CDATA[connector44]]></Name>
-		<X>1290</X>
-		<Y>-630</Y>
+		<X>1450</X>
+		<Y>-640</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -1887,15 +1887,15 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-40</X>
-				<Y>70</Y>
+				<X>-110</X>
+				<Y>50</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362330377</Id>
 		<Name><![CDATA[connector45]]></Name>
-		<X>1290</X>
+		<X>1450</X>
 		<Y>-580</Y>
 		<Label>
 			<X>10</X>
@@ -1930,16 +1930,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-40</X>
-				<Y>40</Y>
+				<X>-110</X>
+				<Y>10</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362364657</Id>
 		<Name><![CDATA[connector46]]></Name>
-		<X>1290</X>
-		<Y>-540</Y>
+		<X>1450</X>
+		<Y>-510</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -1973,16 +1973,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-40</X>
-				<Y>20</Y>
+				<X>-110</X>
+				<Y>-40</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362384115</Id>
 		<Name><![CDATA[connector47]]></Name>
-		<X>1290</X>
-		<Y>-500</Y>
+		<X>1450</X>
+		<Y>-450</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2016,16 +2016,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-40</X>
-				<Y>0</Y>
+				<X>-110</X>
+				<Y>-80</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362436102</Id>
 		<Name><![CDATA[connector48]]></Name>
-		<X>1330</X>
-		<Y>-630</Y>
+		<X>1490</X>
+		<Y>-640</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2059,15 +2059,15 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>80</X>
-				<Y>60</Y>
+				<X>110</X>
+				<Y>80</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362448088</Id>
 		<Name><![CDATA[connector49]]></Name>
-		<X>1330</X>
+		<X>1490</X>
 		<Y>-580</Y>
 		<Label>
 			<X>10</X>
@@ -2102,16 +2102,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>80</X>
-				<Y>10</Y>
+				<X>110</X>
+				<Y>20</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362487434</Id>
 		<Name><![CDATA[connector50]]></Name>
-		<X>1410</X>
-		<Y>-570</Y>
+		<X>1600</X>
+		<Y>-560</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2145,16 +2145,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-80</X>
-				<Y>30</Y>
+				<X>-110</X>
+				<Y>50</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362515101</Id>
 		<Name><![CDATA[connector51]]></Name>
-		<X>1410</X>
-		<Y>-570</Y>
+		<X>1600</X>
+		<Y>-560</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2188,16 +2188,16 @@
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-80</X>
-				<Y>70</Y>
+				<X>-110</X>
+				<Y>110</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362537590</Id>
 		<Name><![CDATA[connector52]]></Name>
-		<X>0</X>
-		<Y>0</Y>
+		<X>1720</X>
+		<Y>-560</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2227,192 +2227,20 @@
 		</TargetConnectableItemReference>
 		<Points>
 			<Point>
-				<X>1500</X>
-				<Y>-570</Y>
-			</Point>
-			<Point>
-				<X>1450</X>
-				<Y>-570</Y>
-			</Point>
-		</Points>
-	</Connector>
-	<Connector>
-		<Id>1777362591226</Id>
-		<Name><![CDATA[connector53]]></Name>
-		<X>0</X>
-		<Y>0</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<SourceEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>batch</ItemName>
-		</SourceEmbeddedObjectReference>
-		<SourceConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Batch</ClassName>
-			<ItemName>in</ItemName>
-		</SourceConnectableItemReference>
-		<TargetEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>selectOutput7</ItemName>
-		</TargetEmbeddedObjectReference>
-		<TargetConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>SelectOutput5</ClassName>
-			<ItemName>out1</ItemName>
-		</TargetConnectableItemReference>
-		<Points>
-			<Point>
-				<X>1545</X>
-				<Y>-620</Y>
-			</Point>
-			<Point>
-				<X>1520</X>
-				<Y>-570</Y>
-			</Point>
-		</Points>
-	</Connector>
-	<Connector>
-		<Id>1777362599021</Id>
-		<Name><![CDATA[connector54]]></Name>
-		<X>1545</X>
-		<Y>-575</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<SourceEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>batch1</ItemName>
-		</SourceEmbeddedObjectReference>
-		<SourceConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Batch</ClassName>
-			<ItemName>in</ItemName>
-		</SourceConnectableItemReference>
-		<TargetEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>selectOutput7</ItemName>
-		</TargetEmbeddedObjectReference>
-		<TargetConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>SelectOutput5</ClassName>
-			<ItemName>out2</ItemName>
-		</TargetConnectableItemReference>
-		<Points>
-			<Point>
 				<X>0</X>
 				<Y>0</Y>
 			</Point>
 			<Point>
-				<X>-25</X>
-				<Y>25</Y>
-			</Point>
-		</Points>
-	</Connector>
-	<Connector>
-		<Id>1777362632838</Id>
-		<Name><![CDATA[connector55]]></Name>
-		<X>1545</X>
-		<Y>-535</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<SourceEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>batch2</ItemName>
-		</SourceEmbeddedObjectReference>
-		<SourceConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Batch</ClassName>
-			<ItemName>in</ItemName>
-		</SourceConnectableItemReference>
-		<TargetEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>selectOutput7</ItemName>
-		</TargetEmbeddedObjectReference>
-		<TargetConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>SelectOutput5</ClassName>
-			<ItemName>out3</ItemName>
-		</TargetConnectableItemReference>
-		<Points>
-			<Point>
-				<X>0</X>
+				<X>-80</X>
 				<Y>0</Y>
-			</Point>
-			<Point>
-				<X>-25</X>
-				<Y>5</Y>
-			</Point>
-		</Points>
-	</Connector>
-	<Connector>
-		<Id>1777362645396</Id>
-		<Name><![CDATA[connector56]]></Name>
-		<X>1545</X>
-		<Y>-490</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<SourceEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>batch3</ItemName>
-		</SourceEmbeddedObjectReference>
-		<SourceConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Batch</ClassName>
-			<ItemName>in</ItemName>
-		</SourceConnectableItemReference>
-		<TargetEmbeddedObjectReference>
-			<PackageName>to_be_model_v2</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>selectOutput7</ItemName>
-		</TargetEmbeddedObjectReference>
-		<TargetConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>SelectOutput5</ClassName>
-			<ItemName>out4</ItemName>
-		</TargetConnectableItemReference>
-		<Points>
-			<Point>
-				<X>0</X>
-				<Y>0</Y>
-			</Point>
-			<Point>
-				<X>-25</X>
-				<Y>-20</Y>
 			</Point>
 		</Points>
 	</Connector>
 	<Connector>
 		<Id>1777362684627</Id>
 		<Name><![CDATA[connector57]]></Name>
-		<X>0</X>
-		<Y>0</Y>
+		<X>340</X>
+		<Y>20</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2454,8 +2282,8 @@
 	<Connector>
 		<Id>1777362704628</Id>
 		<Name><![CDATA[connector58]]></Name>
-		<X>1585</X>
-		<Y>-620</Y>
+		<X>1925</X>
+		<Y>-600</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2497,8 +2325,8 @@
 	<Connector>
 		<Id>1777362714868</Id>
 		<Name><![CDATA[connector59]]></Name>
-		<X>1585</X>
-		<Y>-535</Y>
+		<X>1925</X>
+		<Y>-515</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2540,8 +2368,8 @@
 	<Connector>
 		<Id>1777362746417</Id>
 		<Name><![CDATA[connector60]]></Name>
-		<X>1650</X>
-		<Y>-555</Y>
+		<X>1990</X>
+		<Y>-535</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -2577,6 +2405,210 @@
 			<Point>
 				<X>-65</X>
 				<Y>65</Y>
+			</Point>
+		</Points>
+	</Connector>
+	<Connector>
+		<Id>1777956822539</Id>
+		<Name><![CDATA[connector15]]></Name>
+		<X>1740</X>
+		<Y>-560</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>false</ShowLabel>
+		<SourceEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>selectOutput7</ItemName>
+		</SourceEmbeddedObjectReference>
+		<SourceConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>SelectOutput5</ClassName>
+			<ItemName>out1</ItemName>
+		</SourceConnectableItemReference>
+		<TargetEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>batch</ItemName>
+		</TargetEmbeddedObjectReference>
+		<TargetConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Batch</ClassName>
+			<ItemName>in</ItemName>
+		</TargetConnectableItemReference>
+		<Points>
+			<Point>
+				<X>0</X>
+				<Y>0</Y>
+			</Point>
+			<Point>
+				<X>30</X>
+				<Y>-60</Y>
+			</Point>
+			<Point>
+				<X>70</X>
+				<Y>-60</Y>
+			</Point>
+			<Point>
+				<X>145</X>
+				<Y>-40</Y>
+			</Point>
+		</Points>
+	</Connector>
+	<Connector>
+		<Id>1777956836632</Id>
+		<Name><![CDATA[connector61]]></Name>
+		<X>1740</X>
+		<Y>-540</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>false</ShowLabel>
+		<SourceEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>selectOutput7</ItemName>
+		</SourceEmbeddedObjectReference>
+		<SourceConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>SelectOutput5</ClassName>
+			<ItemName>out2</ItemName>
+		</SourceConnectableItemReference>
+		<TargetEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>batch1</ItemName>
+		</TargetEmbeddedObjectReference>
+		<TargetConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Batch</ClassName>
+			<ItemName>in</ItemName>
+		</TargetConnectableItemReference>
+		<Points>
+			<Point>
+				<X>0</X>
+				<Y>0</Y>
+			</Point>
+			<Point>
+				<X>30</X>
+				<Y>-10</Y>
+			</Point>
+			<Point>
+				<X>70</X>
+				<Y>-10</Y>
+			</Point>
+			<Point>
+				<X>145</X>
+				<Y>-15</Y>
+			</Point>
+		</Points>
+	</Connector>
+	<Connector>
+		<Id>1777956849443</Id>
+		<Name><![CDATA[connector62]]></Name>
+		<X>1740</X>
+		<Y>-520</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>false</ShowLabel>
+		<SourceEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>selectOutput7</ItemName>
+		</SourceEmbeddedObjectReference>
+		<SourceConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>SelectOutput5</ClassName>
+			<ItemName>out3</ItemName>
+		</SourceConnectableItemReference>
+		<TargetEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>batch2</ItemName>
+		</TargetEmbeddedObjectReference>
+		<TargetConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Batch</ClassName>
+			<ItemName>in</ItemName>
+		</TargetConnectableItemReference>
+		<Points>
+			<Point>
+				<X>0</X>
+				<Y>0</Y>
+			</Point>
+			<Point>
+				<X>30</X>
+				<Y>20</Y>
+			</Point>
+			<Point>
+				<X>70</X>
+				<Y>20</Y>
+			</Point>
+			<Point>
+				<X>145</X>
+				<Y>5</Y>
+			</Point>
+		</Points>
+	</Connector>
+	<Connector>
+		<Id>1777956856232</Id>
+		<Name><![CDATA[connector63]]></Name>
+		<X>1740</X>
+		<Y>-500</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>false</ShowLabel>
+		<SourceEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>selectOutput7</ItemName>
+		</SourceEmbeddedObjectReference>
+		<SourceConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>SelectOutput5</ClassName>
+			<ItemName>out4</ItemName>
+		</SourceConnectableItemReference>
+		<TargetEmbeddedObjectReference>
+			<PackageName>to_be_model_v2</PackageName>
+			<ClassName>Main</ClassName>
+			<ItemName>batch3</ItemName>
+		</TargetEmbeddedObjectReference>
+		<TargetConnectableItemReference>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Batch</ClassName>
+			<ItemName>in</ItemName>
+		</TargetConnectableItemReference>
+		<Points>
+			<Point>
+				<X>0</X>
+				<Y>0</Y>
+			</Point>
+			<Point>
+				<X>30</X>
+				<Y>70</Y>
+			</Point>
+			<Point>
+				<X>70</X>
+				<Y>70</Y>
+			</Point>
+			<Point>
+				<X>145</X>
+				<Y>30</Y>
 			</Point>
 		</Points>
 	</Connector>
