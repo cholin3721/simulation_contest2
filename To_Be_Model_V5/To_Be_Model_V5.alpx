@@ -31,7 +31,7 @@
 			<ShutdownCompact>false</ShutdownCompact>
 			<ImportSettings>
 				<ExternalConnection>
-					<Id>1775468167443</Id>
+					<Id>1778221678239</Id>
 					<Name><![CDATA[database]]></Name>
 					<X>0</X>
 					<Y>0</Y>
@@ -56,14 +56,14 @@
 					<Password/>
 				</ExternalConnection>
 				<TableImportSettings>
-					<Id>1775468180655</Id>
+					<Id>1778221678240</Id>
 					<TableReference>
 						<PackageName>to_be_model_v2</PackageName>
 						<ClassName>sheet1</ClassName>
 					</TableReference>
 					<ConnectionIndex>0</ConnectionIndex>
 					<ExternalTableName>"Sheet1"</ExternalTableName>
-					<AutoImport>false</AutoImport>
+					<AutoImport>true</AutoImport>
 				</TableImportSettings>
 			</ImportSettings>
 			<ExportSettings/>
