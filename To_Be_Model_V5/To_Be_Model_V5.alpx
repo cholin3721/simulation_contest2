@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AnyLogicWorkspace splitVersion="1"
                    WorkspaceVersion="1.9"
-                   AnyLogicVersion="8.9.8.202602271015"
+                   AnyLogicVersion="8.9.8.202602271013"
                    AlpVersion="8.9.7">
 	<Model>
 		<Id>1775458701932</Id>
@@ -21,8 +21,8 @@
 		<InspectionWindowColorTheme>DEFAULT</InspectionWindowColorTheme>
 		<Frame>
 			<Id>1775458701934</Id>
-			<Width>1000</Width>
-			<Height>600</Height>
+			<Width>780</Width>
+			<Height>660</Height>
 		</Frame>
 		<Database>
 			<Id>1775458701933</Id>
