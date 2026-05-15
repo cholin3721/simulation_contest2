@@ -410,6 +410,9 @@
 							<Parameter>
 								<Name><![CDATA[cQty]]></Name>
 							</Parameter>
+							<Parameter>
+								<Name><![CDATA[slotIndex]]></Name>
+							</Parameter>
 						</Parameters>
 						<ReplicationFlag>true</ReplicationFlag>
 						<Replication Class="CodeValue">
@@ -1628,6 +1631,9 @@
 				<ClassName>MoveByTransporter</ClassName>
 				<ItemName>1521106872908</ItemName>
 			</GenericParameterSubstituteReference>
+			<GenericParameterSubstituteValue Class="CodeValue">
+				<Code><![CDATA[Box]]></Code>
+			</GenericParameterSubstituteValue>
 		</GenericParameterSubstitute>
 		<Parameters>
 			<Parameter>
@@ -1913,6 +1919,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[waitingCount++;]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onAtExit]]></Name>
@@ -7045,6 +7054,102 @@ traceln("batch3 Out");]]></Code>
 		<InitializationType>SPECIFIED_NUMBER</InitializationType>
 		<InitializationDatabaseTableQuery>
 			<Id>1778493415529</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778824019006</Id>
+		<Name><![CDATA[transporterControl]]></Name>
+		<X>180</X>
+		<Y>-140</Y>
+		<Label>
+			<X>-60</X>
+			<Y>-35</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>TransporterControl</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>TransporterControl</ClassName>
+				<ItemName>1531905793075</ItemName>
+			</GenericParameterSubstituteReference>
+			<GenericParameterSubstituteValue Class="CodeValue">
+				<Code><![CDATA[AGV]]></Code>
+			</GenericParameterSubstituteValue>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[automaticNavigation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[avoidCollisions]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[canEnterNode]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[canEnterPath]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[resolveCollisions]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[collisionDetectionTimeout]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[findPath]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pathsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[nodesToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pathsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnterPath]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExitPath]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnterNode]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[waitingCount--;]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExitNode]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778824019004</Id>
 			<TableReference/>
 		</InitializationDatabaseTableQuery>
 		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>

@@ -3,8 +3,8 @@
 	<Variable Class="PlainVariable">
 		<Id>1775735357218</Id>
 		<Name><![CDATA[indexS]]></Name>
-		<X>210</X>
-		<Y>-440</Y>
+		<X>-280</X>
+		<Y>-480</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -25,8 +25,8 @@
 	<Variable Class="PlainVariable">
 		<Id>1777441706585</Id>
 		<Name><![CDATA[slotBranches]]></Name>
-		<X>120</X>
-		<Y>-340</Y>
+		<X>-370</X>
+		<Y>-380</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -47,8 +47,8 @@
 	<Variable Class="PlainVariable">
 		<Id>1777441743155</Id>
 		<Name><![CDATA[batchSizes]]></Name>
-		<X>120</X>
-		<Y>-290</Y>
+		<X>-370</X>
+		<Y>-330</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -66,11 +66,33 @@
 			</InitialValue>
 		</Properties>
 	</Variable>
+	<Variable Class="PlainVariable">
+		<Id>1778823984180</Id>
+		<Name><![CDATA[waitingCount]]></Name>
+		<X>-540</X>
+		<Y>-560</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Properties SaveInSnapshot="true"
+              Constant="false"
+              AccessType="public"
+              StaticVariable="false">
+			<Type><![CDATA[int]]></Type>
+			<InitialValue Class="CodeValue">
+				<Code><![CDATA[0]]></Code>
+			</InitialValue>
+		</Properties>
+	</Variable>
 	<Variable Class="CollectionVariable">
 		<Id>1775734326130</Id>
 		<Name><![CDATA[col_S]]></Name>
-		<X>210</X>
-		<Y>-520</Y>
+		<X>-280</X>
+		<Y>-560</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -90,8 +112,8 @@
 	<Variable Class="CollectionVariable">
 		<Id>1775734433005</Id>
 		<Name><![CDATA[col_A]]></Name>
-		<X>210</X>
-		<Y>-480</Y>
+		<X>-280</X>
+		<Y>-520</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
@@ -111,8 +133,8 @@
 	<Variable Class="CollectionVariable">
 		<Id>1777441662676</Id>
 		<Name><![CDATA[branchRemainingTotal]]></Name>
-		<X>110</X>
-		<Y>-400</Y>
+		<X>-380</X>
+		<Y>-440</Y>
 		<Label>
 			<X>10</X>
 			<Y>0</Y>
