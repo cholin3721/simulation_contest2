@@ -26,9 +26,6 @@
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[navigationType]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[self.FREE_SPACE_NAVIGATION]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[recognizeAllTransporters]]></Name>
