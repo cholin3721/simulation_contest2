@@ -915,31 +915,6 @@
 				</Points>
 				<Presentation>
 					<ConveyorSpur>
-						<Id>1775464392251</Id>
-						<Name><![CDATA[conveyorSpur]]></Name>
-						<X>160.5</X>
-						<Y>250</Y>
-						<Label>
-							<X>10</X>
-							<Y>0</Y>
-						</Label>
-						<PublicFlag>true</PublicFlag>
-						<PresentationFlag>true</PresentationFlag>
-						<ShowLabel>false</ShowLabel>
-						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-						<Z>0</Z>
-						<LineColor/>
-						<FillColor>-8355712</FillColor>
-						<LineMaterial>null</LineMaterial>
-						<FillMaterial>null</FillMaterial>
-						<Offset>29.5</Offset>
-						<OnRightSide>false</OnRightSide>
-						<LineColor/>
-						<FillColor>-8355712</FillColor>
-						<LineMaterial>null</LineMaterial>
-						<FillMaterial>null</FillMaterial>
-					</ConveyorSpur>
-					<ConveyorSpur>
 						<Id>1775464462623</Id>
 						<Name><![CDATA[conveyorSpur1]]></Name>
 						<X>160.5</X>
@@ -983,6 +958,31 @@
 						<LineMaterial>null</LineMaterial>
 						<FillMaterial>null</FillMaterial>
 						<Offset>49.5</Offset>
+						<OnRightSide>false</OnRightSide>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+					</ConveyorSpur>
+					<ConveyorSpur>
+						<Id>1778852764411</Id>
+						<Name><![CDATA[conveyorSpur]]></Name>
+						<X>20.287999999999997</X>
+						<Y>200.002</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<Z>0</Z>
+						<LineColor/>
+						<FillColor>-8355712</FillColor>
+						<LineMaterial>null</LineMaterial>
+						<FillMaterial>null</FillMaterial>
+						<Offset>29.50276170022347</Offset>
 						<OnRightSide>false</OnRightSide>
 						<LineColor/>
 						<FillColor>-8355712</FillColor>
@@ -5112,6 +5112,177 @@
 					</ConveyorSimpleStation>
 				</Presentation>
 			</Conveyor>
+			<Conveyor TargetId="1778852764411">
+				<Id>1775464386112</Id>
+				<Name><![CDATA[conveyor3]]></Name>
+				<X>70</X>
+				<Y>170</Y>
+				<Label>
+					<X>10</X>
+					<Y>0</Y>
+				</Label>
+				<PublicFlag>true</PublicFlag>
+				<PresentationFlag>true</PresentationFlag>
+				<ShowLabel>false</ShowLabel>
+				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+				<Z>0</Z>
+				<EmbeddedObject>
+					<Id>1775464386111</Id>
+					<ActiveObjectClass>
+						<PackageName>com.anylogic.libraries.material_handling</PackageName>
+						<ClassName>ConveyorPathDescriptor</ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName>com.anylogic.libraries.material_handling</PackageName>
+							<ClassName>ConveyorPathDescriptor</ClassName>
+							<ItemName>1514281812596</ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[type]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[reversible]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[maxSpeed]]></Name>
+							<Value Class="CodeUnitValue">
+								<Code><![CDATA[0.5]]></Code>
+								<Unit Class="SpeedUnits">MPS</Unit>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[initialSpeed]]></Name>
+							<Value Class="CodeUnitValue">
+								<Code><![CDATA[0.5]]></Code>
+								<Unit Class="SpeedUnits">MPS</Unit>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[acceleration]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[deceleration]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[cellSize]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[gap]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[maximumPriority]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[priority]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onLeadingEdgeEnter]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onTrailingEdgeEnter]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onLeadingEdgeExit]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onTrailingEdgeExit]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onStarted]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onStopped]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[onDirectionChanged]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[downtimes]]></Name>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InitialLocationType>XYZ</InitialLocationType>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<Id>1775464386110</Id>
+						<TableReference/>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn/>
+				</EmbeddedObject>
+				<Width Class="UnitValue">
+					<Value Class="Double">1</Value>
+					<Unit Class="LengthUnits">METER</Unit>
+				</Width>
+				<LineColor>-8355712</LineColor>
+				<LineMaterial>null</LineMaterial>
+				<DrawStands>true</DrawStands>
+				<StandsLevel>0.0</StandsLevel>
+				<IsObstacle>true</IsObstacle>
+				<Points>
+					<Point>
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>-25</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>25</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>30</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>0</X>
+						<Y>5</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>-24.999956668927318</X>
+						<Y>30.046546232465563</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>-39.71250336738923</X>
+						<Y>30.073938824695063</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>-14.712546698461914</X>
+						<Y>30.0273925922295</Y>
+						<Z>0</Z>
+					</Point>
+					<Point>
+						<X>-36.71250336738923</X>
+						<Y>30.073938824695063</Y>
+						<Z>0</Z>
+					</Point>
+				</Points>
+			</Conveyor>
 		</Presentation>
 		<Z>0</Z>
 	</ConveyorNetwork>
@@ -5743,209 +5914,6 @@
 		<CellsBetweenLegs>2</CellsBetweenLegs>
 		<IsObstacle>true</IsObstacle>
 	</PalletRack>
-	<ConveyorNetwork>
-		<Id>1775467188528</Id>
-		<Name><![CDATA[conveyorNetwork6]]></Name>
-		<X>70</X>
-		<Y>170</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>true</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-		<Presentation>
-			<Conveyor>
-				<Id>1775464386112</Id>
-				<Name><![CDATA[conveyor3]]></Name>
-				<X>70</X>
-				<Y>170</Y>
-				<Label>
-					<X>10</X>
-					<Y>0</Y>
-				</Label>
-				<PublicFlag>true</PublicFlag>
-				<PresentationFlag>true</PresentationFlag>
-				<ShowLabel>false</ShowLabel>
-				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-				<Z>0</Z>
-				<EmbeddedObject>
-					<Id>1775464386111</Id>
-					<ActiveObjectClass>
-						<PackageName>com.anylogic.libraries.material_handling</PackageName>
-						<ClassName>ConveyorPathDescriptor</ClassName>
-					</ActiveObjectClass>
-					<GenericParameterSubstitute>
-						<GenericParameterSubstituteReference>
-							<PackageName>com.anylogic.libraries.material_handling</PackageName>
-							<ClassName>ConveyorPathDescriptor</ClassName>
-							<ItemName>1514281812596</ItemName>
-						</GenericParameterSubstituteReference>
-					</GenericParameterSubstitute>
-					<Parameters>
-						<Parameter>
-							<Name><![CDATA[type]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[reversible]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[maxSpeed]]></Name>
-							<Value Class="CodeUnitValue">
-								<Code><![CDATA[0.5]]></Code>
-								<Unit Class="SpeedUnits">MPS</Unit>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[initialSpeed]]></Name>
-							<Value Class="CodeUnitValue">
-								<Code><![CDATA[0.5]]></Code>
-								<Unit Class="SpeedUnits">MPS</Unit>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[acceleration]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[deceleration]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[cellSize]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[gap]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[maximumPriority]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[priority]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onLeadingEdgeEnter]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onTrailingEdgeEnter]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onLeadingEdgeExit]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onTrailingEdgeExit]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onStarted]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onStopped]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[onDirectionChanged]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[downtimes]]></Name>
-						</Parameter>
-					</Parameters>
-					<ReplicationFlag>false</ReplicationFlag>
-					<Replication Class="CodeValue">
-						<Code><![CDATA[100]]></Code>
-					</Replication>
-					<CollectionType>ARRAY_LIST_BASED</CollectionType>
-					<InitialLocationType>XYZ</InitialLocationType>
-					<ColumnCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</ColumnCode>
-					<RowCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
-					</RowCode>
-					<LocationNameCode Class="CodeValue">
-						<Code><![CDATA[""]]></Code>
-					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
-					<InitializationDatabaseTableQuery>
-						<Id>1775464386110</Id>
-						<TableReference/>
-					</InitializationDatabaseTableQuery>
-					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-					<QuantityColumn/>
-				</EmbeddedObject>
-				<Width Class="UnitValue">
-					<Value Class="Double">1</Value>
-					<Unit Class="LengthUnits">METER</Unit>
-				</Width>
-				<LineColor>-8355712</LineColor>
-				<LineMaterial>null</LineMaterial>
-				<DrawStands>true</DrawStands>
-				<StandsLevel>0.0</StandsLevel>
-				<IsObstacle>true</IsObstacle>
-				<Points>
-					<Point>
-						<X>0</X>
-						<Y>0</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>0</X>
-						<Y>-25</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>0</X>
-						<Y>25</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>0</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>0</X>
-						<Y>5</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-25</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-40</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-15</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-15</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-39.5</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-64.5</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-					<Point>
-						<X>-36.5</X>
-						<Y>30</Y>
-						<Z>0</Z>
-					</Point>
-				</Points>
-			</Conveyor>
-		</Presentation>
-		<Z>0</Z>
-	</ConveyorNetwork>
 	<ConveyorNetwork>
 		<Id>1775469763559</Id>
 		<Name><![CDATA[conveyorNetwork9]]></Name>
