@@ -9,7 +9,12 @@
       "Read(//c/202444085_Assemble/**)",
       "Bash(cp -r \"/c/202444085_Assemble/simulation/To_Be_Model_V5\" \"/c/202444085_Assemble/simulation/To_Be_Model_V6\" && echo \"Done\")",
       "Bash(Get-ChildItem -Path \"c:\\\\202444085_Assemble\\\\simulation\\\\To_Be_Model_V6\\\\_alp\\\\\" -Recurse -Filter \"*.xml\" | Select-Object FullName | head -30)",
-      "Bash(dir \"C:\\\\Program Files\\\\AnyLogic 8 Personal Learning Edition 8.9\\\\\" /b 2>/dev/null || dir \"C:\\\\Program Files\\\\AnyLogic*\" /b 2>/dev/null)"
+      "Bash(dir \"C:\\\\Program Files\\\\AnyLogic 8 Personal Learning Edition 8.9\\\\\" /b 2>/dev/null || dir \"C:\\\\Program Files\\\\AnyLogic*\" /b 2>/dev/null)",
+      "Bash(findstr /N \"capacity.*40\\\\|speedUpAccel\\\\|speedDownAccel\\\\|InputGate\\\\|inputGate\" EmbeddedObjects.xml)",
+      "Bash(powershell -Command \"Select-String -Pattern 'acceleration|deceleration|InputGate|inputGate' EmbeddedObjects.xml | Select-Object -First 30\")",
+      "Bash(powershell -Command \"Select-String -Pattern 'unloadingTime.*5|unloadingTime' EmbeddedObjects.xml\")",
+      "Bash(powershell -Command ' *)",
+      "Bash(grep -E '\\\\.\\(alp|xml\\)$')"
     ]
   }
 }
