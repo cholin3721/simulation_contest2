@@ -1403,9 +1403,15 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -1415,6 +1421,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -1774,9 +1783,15 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -1786,6 +1801,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2514,9 +2532,15 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -2526,6 +2550,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2885,9 +2912,15 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -2897,6 +2930,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -3198,6 +3234,9 @@
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[type]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.TYPE_EXIT_NUMBER]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition1]]></Name>
@@ -3213,36 +3252,56 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability1]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[0.25]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability2]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[0.25]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability3]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[0.25]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability4]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[0.25]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability5]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[0]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
+    // 1) 기존 슬롯 탐색
+    int target = -1;
+    for (int i = 0; i < 4; i++) {
+        if (slotBranches[i] == agent.branchId) { target = i; break; }
+    }
+
+    // 2) 없으면 빈 슬롯 할당 + batchSize 초기 설정
+    if (target == -1) {
+        for (int i = 0; i < 4; i++) {
+            if (slotBranches[i] == 0) {
+                slotBranches[i] = agent.branchId;
+                target = i;
+                int rem = branchRemainingTotal.getOrDefault(agent.branchId, 0);
+                batchSizes[target] = min(32, rem);
+                break;
+            }
+        }
+    }
+
+    // 3) 빈 슬롯도 없으면 잔여량 가장 적은 슬롯 강제 할당
+    if (target == -1) {
+        int minRem = Integer.MAX_VALUE;
+        for (int i = 0; i < 4; i++) {
+            int rem = branchRemainingTotal.getOrDefault(slotBranches[i], 0);
+            if (rem < minRem) { minRem = rem; target = i; }
+        }
+    }
+
+    agent.slotIndex = target;
+    return target + 1;
+}).getAsInt()
+]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
@@ -7317,9 +7376,15 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -7329,6 +7394,9 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>

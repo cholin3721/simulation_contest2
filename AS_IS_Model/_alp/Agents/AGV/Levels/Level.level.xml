@@ -21,7 +21,7 @@
 			<Y>-10</Y>
 		</Label>
 		<ResourceReference>
-			<PackageName>to_be_model</PackageName>
+			<PackageName>as_is_model</PackageName>
 			<ClassName>3d/agv.dae</ClassName>
 		</ResourceReference>
 		<ColorTable>
