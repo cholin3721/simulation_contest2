@@ -7,7 +7,8 @@ try {
     while(rs.next()) {
         branchRemainingTotal.put(rs.getInt("branch_id"), rs.getInt("cnt"));
     }
-} catch (Exception e) {}]]></StartupCode>
+} catch (Exception e) { traceln("DB ERROR: " + e); }
+traceln("branchRemainingTotal size=" + branchRemainingTotal.size() + " contents=" + branchRemainingTotal);]]></StartupCode>
 	<Generic>false</Generic>
 	<GenericParameter>
 		<Id>1775458701941</Id>
