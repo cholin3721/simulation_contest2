@@ -755,9 +755,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[delay_Erector1.size() <= delay_Erector2.size()]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability]]></Name>
@@ -1403,15 +1400,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -1421,9 +1412,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -1783,15 +1771,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -1801,9 +1783,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2532,15 +2511,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -2550,9 +2523,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2912,15 +2882,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -2930,9 +2894,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -7376,15 +7337,9 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
@@ -7394,9 +7349,6 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
