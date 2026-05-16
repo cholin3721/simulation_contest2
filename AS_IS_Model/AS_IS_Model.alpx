@@ -5,9 +5,9 @@
                    AlpVersion="8.9.7">
 	<Model>
 		<Id>1775458701932</Id>
-		<Name><![CDATA[TO_BE_Model]]></Name>
+		<Name><![CDATA[AS_IS_Model]]></Name>
 		<EngineVersion>6</EngineVersion>
-		<JavaPackageName><![CDATA[to_be_model]]></JavaPackageName>
+		<JavaPackageName><![CDATA[as_is_model]]></JavaPackageName>
 		<ModelTimeUnit>Second</ModelTimeUnit>
 		<Folders/>
 		<ActiveObjectClasses/>
@@ -47,7 +47,7 @@
 					<ConnectOnStartup>true</ConnectOnStartup>
 					<DatabaseName/>
 					<ResourceReference>
-						<PackageName>to_be_model</PackageName>
+						<PackageName>as_is_model</PackageName>
 						<ClassName>C:/202444085_Assemble/simulation/simulation_orders.xlsx</ClassName>
 					</ResourceReference>
 					<Host>localhost</Host>
@@ -58,7 +58,7 @@
 				<TableImportSettings>
 					<Id>1778221678240</Id>
 					<TableReference>
-						<PackageName>to_be_model</PackageName>
+						<PackageName>as_is_model</PackageName>
 						<ClassName>sheet1</ClassName>
 					</TableReference>
 					<ConnectionIndex>0</ConnectionIndex>

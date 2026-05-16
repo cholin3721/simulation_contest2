@@ -70,15 +70,28 @@ SKU 구성 확률: S(50%), A(50%), B(30%), C(5%) (독립 사건)
 
 ```
 simulation/
-├── To_Be_Model/               ← AnyLogic 시뮬레이션 모델
+├── AS_IS_Model/               ← AS-IS 기준 모델
 │   ├── _alp/                  ← XML 소스 (AnyLogic 편집용)
 │   │   ├── Agents/Main/       ← 메인 에이전트 (프로세스 로직)
 │   │   ├── Agents/AGV/        ← AGV 에이전트
 │   │   ├── Agents/Box/        ← 박스 에이전트
-│   │   └── Experiments.xml    ← 시뮬레이션 실행 설정
+│   │   ├── Experiments.xml    ← 시뮬레이션 실행 설정
+│   │   └── ModelResources.xml
+│   ├── 3d/                    ← AGV·박스 3D 모델 (.dae)
 │   ├── database/              ← 내장 HSQLDB (주문 데이터)
-│   └── To_Be_Model.alpx       ← AnyLogic 프로젝트 파일 (더블클릭으로 열기)
+│   └── AS_IS_Model.alpx       ← AnyLogic 프로젝트 파일
+├── TO_BE_Model/               ← TO-BE 개선 모델 (AS_IS 기반 복사)
+│   ├── _alp/
+│   │   ├── Agents/Main/
+│   │   ├── Agents/AGV/
+│   │   ├── Agents/Box/
+│   │   ├── Experiments.xml
+│   │   └── ModelResources.xml
+│   ├── 3d/
+│   ├── database/
+│   └── TO_BE_Model.alpx       ← AnyLogic 프로젝트 파일 (더블클릭으로 열기)
 ├── simulation_orders.xlsx     ← 주문 데이터 (60개 지점, SKU별 수량)
+├── simulation_rules.md        ← 모델 설계 규칙 메모
 ├── 제23회 한국 대학생 컴퓨터 시뮬레이션 경진대회 예선 문제_수정.pdf
 ├── 제23회 한국 대학생 컴퓨터 시뮬레이션 경진대회 안내 및 규칙.pdf
 └── README.md
@@ -86,7 +99,12 @@ simulation/
 
 ## 실행 방법
 
-1. `To_Be_Model/To_Be_Model.alpx` 더블클릭 → AnyLogic 실행
+| 모델 | 파일 경로 |
+|------|----------|
+| AS-IS (기준) | `AS_IS_Model/AS_IS_Model.alpx` |
+| TO-BE (개선) | `TO_BE_Model/TO_BE_Model.alpx` |
+
+1. 위 `.alpx` 파일 더블클릭 → AnyLogic 자동 실행
 2. Run → Simulation 실행
 3. 좌측 chartArea에서 실시간 지표 확인
 4. 5시간(18,000초) 후 자동 종료 (PLE 제한)
