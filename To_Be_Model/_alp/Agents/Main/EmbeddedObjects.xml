@@ -36,7 +36,7 @@
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[40]]></Code>
+					<Code><![CDATA[25]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -3172,7 +3172,7 @@
 	<EmbeddedObject>
 		<Id>1777359304968</Id>
 		<Name><![CDATA[selectOutput5]]></Name>
-		<X>520</X>
+		<X>470</X>
 		<Y>-360</Y>
 		<Label>
 			<X>-40</X>
@@ -3236,21 +3236,66 @@
         if (slotBranches[i] == agent.branchId) { target = i; break; }
     }
 
+<<<<<<< Updated upstream
     // 2) ?놁쑝硫?鍮??щ’ ?좊떦 + batchSize 珥덇린 ?ㅼ젙
+=======
+    // 2) 없으면 빈 슬롯 할당
+    boolean wasNewlyAssigned = false;
+>>>>>>> Stashed changes
     if (target == -1) {
         for (int i = 0; i < 4; i++) {
             if (slotBranches[i] == 0) {
                 slotBranches[i] = agent.branchId;
                 target = i;
+<<<<<<< Updated upstream
                 int rem = branchRemainingTotal.getOrDefault(agent.branchId, 0);
                 batchSizes[target] = (rem > 0) ? min(32, rem) : 32;
                 traceln("SLOT_ASSIGN: slot=" + target + " branchId=" + agent.branchId + " rem=" + rem + " batchSizes=" + batchSizes[target]);
+=======
+                wasNewlyAssigned = true;
+                batchSizes[target] = min(32, branchRemainingTotal.getOrDefault(agent.branchId, 0));
+>>>>>>> Stashed changes
                 break;
             }
         }
     }
 
+<<<<<<< Updated upstream
     // 3) ?щ’ 苑?李쇱쑝硫?out5(踰꾪띁 ?湲? - spec: ?щ’ 媛뺤젣諛곗젙 湲덉?
+=======
+    // 3) 빈 슬롯도 없으면 잔여량 가장 적은 슬롯 강제 할당
+    if (target == -1) {
+        int minRem = Integer.MAX_VALUE;
+        for (int i = 0; i < 4; i++) {
+            int rem = branchRemainingTotal.getOrDefault(slotBranches[i], 0);
+            if (rem < minRem) { minRem = rem; target = i; }
+        }
+    }
+
+    // 4) back-pressure: Step2에서 새로 배정 + 비어있는 altTarget이 있을 때만
+    if (wasNewlyAssigned) {
+        int[] laneSizes = {
+            convey3.size(), convey4.size(), convey5.size(), convey6.size()
+        };
+        if (laneSizes[target] >= 2) {
+            int altTarget = -1;
+            int minSize = Integer.MAX_VALUE;
+            for (int i = 0; i < 4; i++) {
+                if (slotBranches[i] == 0 && laneSizes[i] < minSize) {
+                    minSize = laneSizes[i];
+                    altTarget = i;
+                }
+            }
+            if (altTarget != -1) {
+                slotBranches[target] = 0;
+                slotBranches[altTarget] = agent.branchId;
+                batchSizes[altTarget] = min(32, branchRemainingTotal.getOrDefault(agent.branchId, 0));
+                target = altTarget;
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
     agent.slotIndex = target;
     return (target == -1) ? 5 : target + 1;
 }).getAsInt()
@@ -3259,6 +3304,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
@@ -3306,7 +3354,7 @@
 		<Id>1777359639712</Id>
 		<Name><![CDATA[convey2]]></Name>
 		<X>410</X>
-		<Y>-200</Y>
+		<Y>-160</Y>
 		<Label>
 			<X>-15</X>
 			<Y>-25</Y>
@@ -3432,97 +3480,9 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
-		<Id>1777359687535</Id>
-		<Name><![CDATA[delay2]]></Name>
-		<X>990</X>
-		<Y>-210</Y>
-		<Label>
-			<X>-5</X>
-			<Y>-15</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>true</ShowLabel>
-		<ActiveObjectClass>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Delay</ClassName>
-		</ActiveObjectClass>
-		<GenericParameterSubstitute>
-			<GenericParameterSubstituteReference>
-				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-				<ClassName>Delay</ClassName>
-				<ItemName>1412336242930</ItemName>
-			</GenericParameterSubstituteReference>
-		</GenericParameterSubstitute>
-		<Parameters>
-			<Parameter>
-				<Name><![CDATA[type]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[delayTime]]></Name>
-				<Value Class="CodeUnitValue">
-					<Code><![CDATA[2.1 * agent.cQty + 1.3 * agent.cSkuCnt + 24.6]]></Code>
-					<Unit Class="TimeUnits">SECOND</Unit>
-				</Value>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[capacity]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[maximumCapacity]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[entityLocation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[pushProtocol]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[forceStatisticsCollection]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onEnter]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onAtExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onRemove]]></Name>
-			</Parameter>
-		</Parameters>
-		<ReplicationFlag>false</ReplicationFlag>
-		<Replication Class="CodeValue">
-			<Code><![CDATA[100]]></Code>
-		</Replication>
-		<CollectionType>ARRAY_LIST_BASED</CollectionType>
-		<InitialLocationType>XYZ</InitialLocationType>
-		<ColumnCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</ColumnCode>
-		<RowCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</RowCode>
-		<LocationNameCode Class="CodeValue">
-			<Code><![CDATA[""]]></Code>
-		</LocationNameCode>
-		<InitializationType>SPECIFIED_NUMBER</InitializationType>
-		<InitializationDatabaseTableQuery>
-			<Id>1777359687533</Id>
-			<TableReference/>
-		</InitializationDatabaseTableQuery>
-		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-		<QuantityColumn/>
-	</EmbeddedObject>
-	<EmbeddedObject>
 		<Id>1777359710114</Id>
 		<Name><![CDATA[convey3]]></Name>
-		<X>575</X>
+		<X>525</X>
 		<Y>-380</Y>
 		<Label>
 			<X>-15</X>
@@ -3651,7 +3611,7 @@
 	<EmbeddedObject>
 		<Id>1777359723399</Id>
 		<Name><![CDATA[convey4]]></Name>
-		<X>575</X>
+		<X>525</X>
 		<Y>-345</Y>
 		<Label>
 			<X>-15</X>
@@ -3780,7 +3740,7 @@
 	<EmbeddedObject>
 		<Id>1777359731055</Id>
 		<Name><![CDATA[convey5]]></Name>
-		<X>575</X>
+		<X>525</X>
 		<Y>-305</Y>
 		<Label>
 			<X>-15</X>
@@ -3909,8 +3869,8 @@
 	<EmbeddedObject>
 		<Id>1777359746394</Id>
 		<Name><![CDATA[convey6]]></Name>
-		<X>575</X>
-		<Y>-265</Y>
+		<X>520</X>
+		<Y>-240</Y>
 		<Label>
 			<X>-15</X>
 			<Y>-25</Y>
@@ -4036,6 +3996,7 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
+<<<<<<< Updated upstream
 		<Id>1777359771993</Id>
 		<Name><![CDATA[delay3]]></Name>
 		<X>680</X>
@@ -4124,6 +4085,8 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
+=======
+>>>>>>> Stashed changes
 		<Id>1777359846264</Id>
 		<Name><![CDATA[selectOutput3]]></Name>
 		<X>740</X>
@@ -4202,264 +4165,6 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
-		<Id>1777359856211</Id>
-		<Name><![CDATA[convey7]]></Name>
-		<X>760</X>
-		<Y>-270</Y>
-		<Label>
-			<X>-15</X>
-			<Y>-25</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>true</ShowLabel>
-		<ActiveObjectClass>
-			<PackageName>com.anylogic.libraries.material_handling</PackageName>
-			<ClassName>Convey</ClassName>
-		</ActiveObjectClass>
-		<GenericParameterSubstitute>
-			<GenericParameterSubstituteReference>
-				<PackageName>com.anylogic.libraries.material_handling</PackageName>
-				<ClassName>Convey</ClassName>
-				<ItemName>1504168429638</ItemName>
-			</GenericParameterSubstituteReference>
-		</GenericParameterSubstitute>
-		<Parameters>
-			<Parameter>
-				<Name><![CDATA[sourceType]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[self.SOURCE_CURRENT_POSITION]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceOffset]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[changeOrientation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[orientation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetType]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetPositionOnConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetConveyor]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[conveyor11]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetOffset]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetStation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetCustomStation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[routeIs]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorsToAvoid]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorsToInclude]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorSequence]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[removeFromConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[removeFromSpace]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onEnter]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onAtExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onRemove]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onCancel]]></Name>
-			</Parameter>
-		</Parameters>
-		<ReplicationFlag>false</ReplicationFlag>
-		<Replication Class="CodeValue">
-			<Code><![CDATA[100]]></Code>
-		</Replication>
-		<CollectionType>ARRAY_LIST_BASED</CollectionType>
-		<InitialLocationType>XYZ</InitialLocationType>
-		<ColumnCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</ColumnCode>
-		<RowCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</RowCode>
-		<LocationNameCode Class="CodeValue">
-			<Code><![CDATA[""]]></Code>
-		</LocationNameCode>
-		<InitializationType>SPECIFIED_NUMBER</InitializationType>
-		<InitializationDatabaseTableQuery>
-			<Id>1777359856209</Id>
-			<TableReference/>
-		</InitializationDatabaseTableQuery>
-		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-		<QuantityColumn/>
-	</EmbeddedObject>
-	<EmbeddedObject>
-		<Id>1777359872494</Id>
-		<Name><![CDATA[convey8]]></Name>
-		<X>815</X>
-		<Y>-330</Y>
-		<Label>
-			<X>-15</X>
-			<Y>-25</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>true</ShowLabel>
-		<ActiveObjectClass>
-			<PackageName>com.anylogic.libraries.material_handling</PackageName>
-			<ClassName>Convey</ClassName>
-		</ActiveObjectClass>
-		<GenericParameterSubstitute>
-			<GenericParameterSubstituteReference>
-				<PackageName>com.anylogic.libraries.material_handling</PackageName>
-				<ClassName>Convey</ClassName>
-				<ItemName>1504168429638</ItemName>
-			</GenericParameterSubstituteReference>
-		</GenericParameterSubstitute>
-		<Parameters>
-			<Parameter>
-				<Name><![CDATA[sourceType]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[self.SOURCE_CURRENT_POSITION]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[sourceOffset]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[changeOrientation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[orientation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetType]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetPositionOnConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetConveyor]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[conveyor6]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetOffset]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetStation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[targetCustomStation]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[routeIs]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorsToAvoid]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorsToInclude]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[conveyorSequence]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[removeFromConveyor]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[removeFromSpace]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onEnter]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onAtExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onExit]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onRemove]]></Name>
-			</Parameter>
-			<Parameter>
-				<Name><![CDATA[onCancel]]></Name>
-			</Parameter>
-		</Parameters>
-		<ReplicationFlag>false</ReplicationFlag>
-		<Replication Class="CodeValue">
-			<Code><![CDATA[100]]></Code>
-		</Replication>
-		<CollectionType>ARRAY_LIST_BASED</CollectionType>
-		<InitialLocationType>XYZ</InitialLocationType>
-		<ColumnCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</ColumnCode>
-		<RowCode Class="CodeValue">
-			<Code><![CDATA[0]]></Code>
-		</RowCode>
-		<LocationNameCode Class="CodeValue">
-			<Code><![CDATA[""]]></Code>
-		</LocationNameCode>
-		<InitializationType>SPECIFIED_NUMBER</InitializationType>
-		<InitializationDatabaseTableQuery>
-			<Id>1777359872492</Id>
-			<TableReference/>
-		</InitializationDatabaseTableQuery>
-		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-		<QuantityColumn/>
-	</EmbeddedObject>
-	<EmbeddedObject>
 		<Id>1777359883687</Id>
 		<Name><![CDATA[delay4]]></Name>
 		<X>920</X>
@@ -4489,7 +4194,7 @@
 			<Parameter>
 				<Name><![CDATA[delayTime]]></Name>
 				<Value Class="CodeUnitValue">
-					<Code><![CDATA[100]]></Code>
+					<Code><![CDATA[0]]></Code>
 					<Unit Class="TimeUnits">SECOND</Unit>
 				</Value>
 			</Parameter>
@@ -4550,8 +4255,8 @@
 	<EmbeddedObject>
 		<Id>1777359889037</Id>
 		<Name><![CDATA[delay5]]></Name>
-		<X>880</X>
-		<Y>-340</Y>
+		<X>920</X>
+		<Y>-370</Y>
 		<Label>
 			<X>-5</X>
 			<Y>-15</Y>
@@ -4589,6 +4294,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[entityLocation]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[node38]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[pushProtocol]]></Name>
@@ -7925,6 +7633,1372 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 		<InitializationType>SPECIFIED_NUMBER</InitializationType>
 		<InitializationDatabaseTableQuery>
 			<Id>1778855078875</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778989456856</Id>
+		<Name><![CDATA[queue3]]></Name>
+		<X>870</X>
+		<Y>-180</Y>
+		<Label>
+			<X>-5</X>
+			<Y>-10</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Queue</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Queue</ClassName>
+				<ItemName>1412336242932</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[queuing]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[priority]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[comparison]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[enableTimeout]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[timeout]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[enablePreemption]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExitTimeout]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExitPreempted]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778989456854</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994366846</Id>
+		<Name><![CDATA[delay2]]></Name>
+		<X>600</X>
+		<Y>-390</Y>
+		<Label>
+			<X>0</X>
+			<Y>-10</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[node_B1]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994366844</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994385752</Id>
+		<Name><![CDATA[delay3]]></Name>
+		<X>600</X>
+		<Y>-350</Y>
+		<Label>
+			<X>0</X>
+			<Y>-10</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[node_B2]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994385750</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994391683</Id>
+		<Name><![CDATA[delay13]]></Name>
+		<X>600</X>
+		<Y>-310</Y>
+		<Label>
+			<X>0</X>
+			<Y>-10</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[node_B3]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994391681</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994395592</Id>
+		<Name><![CDATA[delay14]]></Name>
+		<X>600</X>
+		<Y>-260</Y>
+		<Label>
+			<X>0</X>
+			<Y>-10</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[node_B4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994395590</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994777564</Id>
+		<Name><![CDATA[convey7]]></Name>
+		<X>810</X>
+		<Y>-330</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor6]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994777562</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778994845659</Id>
+		<Name><![CDATA[convey8]]></Name>
+		<X>780</X>
+		<Y>-250</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor11]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778994845657</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778995472280</Id>
+		<Name><![CDATA[convey12]]></Name>
+		<X>660</X>
+		<Y>-410</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor9]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778995472278</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778995476790</Id>
+		<Name><![CDATA[convey17]]></Name>
+		<X>660</X>
+		<Y>-340</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor10]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778995476788</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778995479383</Id>
+		<Name><![CDATA[convey18]]></Name>
+		<X>660</X>
+		<Y>-290</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor26]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778995479381</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778995484032</Id>
+		<Name><![CDATA[convey19]]></Name>
+		<X>660</X>
+		<Y>-240</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor27]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778995484030</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+		<Id>1778995715863</Id>
+		<Name><![CDATA[convey20]]></Name>
+		<X>990</X>
+		<Y>-380</Y>
+		<Label>
+			<X>-10</X>
+			<Y>-25</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.material_handling</PackageName>
+			<ClassName>Convey</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>Convey</ClassName>
+				<ItemName>1504168429638</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[sourceType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourcePositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor6]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[sourceOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[changeOrientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[orientation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetPositionOnConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetConveyor]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[conveyor11]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffsetFromBeginning]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetOffset]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[targetCustomStation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[routeIs]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToAvoid]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorsToInclude]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[conveyorSequence]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromConveyor]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[removeFromSpace]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onCancel]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1778995715861</Id>
 			<TableReference/>
 		</InitializationDatabaseTableQuery>
 		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>

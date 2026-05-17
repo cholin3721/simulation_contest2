@@ -5,7 +5,7 @@
                    AlpVersion="8.9.7">
 	<Model>
 		<Id>1775458701932</Id>
-		<Name><![CDATA[TO_BE_Model]]></Name>
+		<Name><![CDATA[To_Be_Model]]></Name>
 		<EngineVersion>6</EngineVersion>
 		<JavaPackageName><![CDATA[to_be_model]]></JavaPackageName>
 		<ModelTimeUnit>Second</ModelTimeUnit>
