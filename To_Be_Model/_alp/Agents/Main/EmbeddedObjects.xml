@@ -617,6 +617,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onAtExit]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[if (firstBoxTime < 0) firstBoxTime = time();]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit]]></Name>
@@ -834,6 +837,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -925,6 +931,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -1280,7 +1289,7 @@
 			<Parameter>
 				<Name><![CDATA[destinationNode]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[col_A.get(indexS++ % col_A.size())]]></Code>
+					<Code><![CDATA[col_A.get(indexA++ % col_A.size())]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -2016,6 +2025,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -2101,7 +2113,7 @@
 			<Parameter>
 				<Name><![CDATA[delayTime]]></Name>
 				<Value Class="CodeUnitValue">
-					<Code><![CDATA[60.0/25]]></Code>
+					<Code><![CDATA[2.1 * agent.aQty + 1.3 * agent.aSkuCnt + 1.6]]></Code>
 					<Unit Class="TimeUnits">SECOND</Unit>
 				</Value>
 			</Parameter>
@@ -2189,7 +2201,7 @@
 			<Parameter>
 				<Name><![CDATA[delayTime]]></Name>
 				<Value Class="CodeUnitValue">
-					<Code><![CDATA[60.0/25]]></Code>
+					<Code><![CDATA[2.1 * agent.sQty + 1.3 * agent.sSkuCnt + 1.6]]></Code>
 					<Unit Class="TimeUnits">SECOND</Unit>
 				</Value>
 			</Parameter>
@@ -3195,9 +3207,6 @@
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[type]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[self.TYPE_EXIT_NUMBER]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition1]]></Name>
@@ -3213,49 +3222,36 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability1]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability2]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability3]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability4]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability5]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
-    // 1) 湲곗〈 ?щ’ ?먯깋
-    int target = -1;
-    for (int i = 0; i < 4; i++) {
-        if (slotBranches[i] == agent.branchId) { target = i; break; }
-    }
-
-    // 2) ?놁쑝硫?鍮??щ’ ?좊떦 + batchSize 珥덇린 ?ㅼ젙
-    if (target == -1) {
-        for (int i = 0; i < 4; i++) {
-            if (slotBranches[i] == 0) {
-                slotBranches[i] = agent.branchId;
-                target = i;
-                int rem = branchRemainingTotal.getOrDefault(agent.branchId, 0);
-                batchSizes[target] = (rem > 0) ? min(32, rem) : 32;
-                traceln("SLOT_ASSIGN: slot=" + target + " branchId=" + agent.branchId + " rem=" + rem + " batchSizes=" + batchSizes[target]);
-                break;
-            }
-        }
-    }
-
-    // 3) ?щ’ 苑?李쇱쑝硫?out5(踰꾪띁 ?湲? - spec: ?щ’ 媛뺤젣諛곗젙 湲덉?
-    agent.slotIndex = target;
-    return (target == -1) ? 5 : target + 1;
-}).getAsInt()
-]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
@@ -3467,6 +3463,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4065,12 +4064,15 @@
 			<Parameter>
 				<Name><![CDATA[delayTime]]></Name>
 				<Value Class="CodeUnitValue">
-					<Code><![CDATA[60.0/25]]></Code>
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
 					<Unit Class="TimeUnits">SECOND</Unit>
 				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4495,6 +4497,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4583,6 +4588,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4731,7 +4739,7 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("遊됲븿湲?-> Convey9");]]></Code>
+					<Code><![CDATA[traceln("봉함기 -> Convey9");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -4866,7 +4874,7 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("遊됲븿湲?-> Convey10");]]></Code>
+					<Code><![CDATA[traceln("봉함기 -> Convey10");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -4966,34 +4974,30 @@
 				<Name><![CDATA[exitNumber]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
-    // 1) 湲곗〈 ?щ’ ?먯깋
+    if (agent.slotIndex >= 0) return agent.slotIndex + 1;
     int target = -1;
     for (int i = 0; i < 4; i++) {
         if (slotBranches[i] == agent.branchId) { target = i; break; }
     }
-    
-    // 2) ?놁쑝硫?鍮??щ’ ?좊떦 + batchSize 珥덇린 ?ㅼ젙
     if (target == -1) {
         for (int i = 0; i < 4; i++) {
             if (slotBranches[i] == 0) {
                 slotBranches[i] = agent.branchId;
                 target = i;
-                int rem = branchRemainingTotal.getOrDefault(agent.branchId, 0);
-                batchSizes[target] = (rem > 0) ? min(32, rem) : 32;
-                traceln("SLOT_ASSIGN: slot=" + target + " branchId=" + agent.branchId + " rem=" + rem + " batchSizes=" + batchSizes[target]);
                 break;
             }
         }
     }
-    
-    // 3) ?щ’ 苑?李쇱쑝硫?out5(踰꾪띁 ?湲? - spec: ?щ’ 媛뺤젣諛곗젙 湲덉?
-
-    // 4) Box???щ’ 踰덊샇 ???
+    if (target == -1) {
+        int minRem = Integer.MAX_VALUE;
+        for (int i = 0; i < 4; i++) {
+            int rem = branchRemainingTotal.getOrDefault(slotBranches[i], 0);
+            if (rem < minRem) { minRem = rem; target = i; }
+        }
+    }
     agent.slotIndex = target;
-
-    return (target == -1) ? 5 : target + 1;
-}).getAsInt()
-]]></Code>
+    return target + 1;
+}).getAsInt()]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5001,9 +5005,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("branch=" + agent.branchId + " slot=" + agent.slotIndex);]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit1]]></Name>
@@ -5143,7 +5144,7 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Convey13 吏꾩엯");]]></Code>
+					<Code><![CDATA[traceln("Convey13 진입");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5281,7 +5282,7 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Convey14 吏꾩엯");]]></Code>
+					<Code><![CDATA[traceln("Convey14 진입");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5419,7 +5420,7 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Convey15 吏꾩엯");]]></Code>
+					<Code><![CDATA[traceln("Convey15 진입");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5572,7 +5573,7 @@
 			<Parameter>
 				<Name><![CDATA[onRemove]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Convey16 ?먯씠?꾪듃 ??젣");]]></Code>
+					<Code><![CDATA[traceln("Convey16 에이전트 삭제");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5660,13 +5661,17 @@
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Delay6 吏꾩엯 ?깃났");]]></Code>
+					<Code><![CDATA[traceln("Delay6 진입 성공");]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onAtExit]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Delay6 ?덉텧");]]></Code>
+					<Code><![CDATA[totalBoxes++;
+totalQty += agent.sQty + agent.aQty + agent.bQty + agent.cQty;
+if (totalBoxes % 500 == 0) {
+    traceln("KPI: time=" + time() + " boxes=" + totalBoxes + " qty=" + totalQty);
+}]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5759,10 +5764,7 @@
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
-    return agent.slotIndex + 1;
-}).getAsInt()
-]]></Code>
+					<Code><![CDATA[agent.slotIndex + 1]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5770,33 +5772,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7 In");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit1]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-1 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit2]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-2 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit3]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-3 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit4]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-4 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit5]]></Name>
@@ -5950,8 +5937,7 @@
 				<Name><![CDATA[onExit]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[int branchId0 = slotBranches[0];
-int actualBatch0 = batchSizes[0];
-int rem0 = branchRemainingTotal.getOrDefault(branchId0, 0) - actualBatch0;
+int rem0 = branchRemainingTotal.getOrDefault(branchId0, 0) - 32;
 branchRemainingTotal.put(branchId0, rem0);
 if (rem0 <= 0) {
     completedBranches++;
@@ -6114,8 +6100,7 @@ traceln("batch Out branchId=" + branchId0 + " rem=" + rem0);]]></Code>
 				<Name><![CDATA[onExit]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[int branchId1 = slotBranches[1];
-int actualBatch1 = batchSizes[1];
-int rem1 = branchRemainingTotal.getOrDefault(branchId1, 0) - actualBatch1;
+int rem1 = branchRemainingTotal.getOrDefault(branchId1, 0) - 32;
 branchRemainingTotal.put(branchId1, rem1);
 if (rem1 <= 0) {
     completedBranches++;
@@ -6278,8 +6263,7 @@ traceln("batch1 Out branchId=" + branchId1 + " rem=" + rem1);]]></Code>
 				<Name><![CDATA[onExit]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[int branchId2 = slotBranches[2];
-int actualBatch2 = batchSizes[2];
-int rem2 = branchRemainingTotal.getOrDefault(branchId2, 0) - actualBatch2;
+int rem2 = branchRemainingTotal.getOrDefault(branchId2, 0) - 32;
 branchRemainingTotal.put(branchId2, rem2);
 if (rem2 <= 0) {
     completedBranches++;
@@ -6442,8 +6426,7 @@ traceln("batch2 Out branchId=" + branchId2 + " rem=" + rem2);]]></Code>
 				<Name><![CDATA[onExit]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[int branchId3 = slotBranches[3];
-int actualBatch3 = batchSizes[3];
-int rem3 = branchRemainingTotal.getOrDefault(branchId3, 0) - actualBatch3;
+int rem3 = branchRemainingTotal.getOrDefault(branchId3, 0) - 32;
 branchRemainingTotal.put(branchId3, rem3);
 if (rem3 <= 0) {
     completedBranches++;
@@ -6508,7 +6491,7 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("sink");]]></Code>
+					<Code><![CDATA[lastBoxTime = time();]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -7034,6 +7017,9 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>

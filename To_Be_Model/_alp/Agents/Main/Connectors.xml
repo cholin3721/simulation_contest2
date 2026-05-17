@@ -2116,7 +2116,7 @@
 		<SourceConnectableItemReference>
 			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
 			<ClassName>Delay</ClassName>
-			<ItemName>in</ItemName>
+			<ItemName>out</ItemName>
 		</SourceConnectableItemReference>
 		<TargetEmbeddedObjectReference>
 			<PackageName>to_be_model</PackageName>
@@ -2159,7 +2159,7 @@
 		<SourceConnectableItemReference>
 			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
 			<ClassName>Delay</ClassName>
-			<ItemName>out</ItemName>
+			<ItemName>in</ItemName>
 		</SourceConnectableItemReference>
 		<TargetEmbeddedObjectReference>
 			<PackageName>to_be_model</PackageName>
@@ -3043,45 +3043,6 @@
 			<Point>
 				<X>10</X>
 				<Y>5</Y>
-			</Point>
-		</Points>
-	</Connector>
-	<Connector>
-		<Id>1779400000001</Id>
-		<Name><![CDATA[connector_bc_overflow]]></Name>
-		<X>550</X>
-		<Y>-215</Y>
-		<Label>
-			<X>10</X>
-			<Y>0</Y>
-		</Label>
-		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
-		<ShowLabel>false</ShowLabel>
-		<SourceEmbeddedObjectReference>
-			<PackageName>to_be_model</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>selectOutput5</ItemName>
-		</SourceEmbeddedObjectReference>
-		<SourceConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>SelectOutput5</ClassName>
-			<ItemName>out5</ItemName>
-		</SourceConnectableItemReference>
-		<TargetEmbeddedObjectReference>
-			<PackageName>to_be_model</PackageName>
-			<ClassName>Main</ClassName>
-			<ItemName>queue2</ItemName>
-		</TargetEmbeddedObjectReference>
-		<TargetConnectableItemReference>
-			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
-			<ClassName>Queue</ClassName>
-			<ItemName>in</ItemName>
-		</TargetConnectableItemReference>
-		<Points>
-			<Point>
-				<X>0</X>
-				<Y>0</Y>
 			</Point>
 		</Points>
 	</Connector>

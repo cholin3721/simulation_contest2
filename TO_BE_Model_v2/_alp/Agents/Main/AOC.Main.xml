@@ -83,8 +83,8 @@ try {
 	<ScaleRuler>
 		<Id>1775458701939</Id>
 		<Name><![CDATA[scale]]></Name>
-		<X>-480</X>
-		<Y>-240</Y>
+		<X>-680</X>
+		<Y>-260</Y>
 		<PublicFlag>false</PublicFlag>
 		<PresentationFlag>false</PresentationFlag>
 		<ShowLabel>false</ShowLabel>

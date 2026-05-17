@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActiveObjectClass>
-	<Id>1775458701936</Id>
-	<Name><![CDATA[Main]]></Name>
-	<StartupCode><![CDATA[com.anylogic.engine.connectivity.ResultSet rs = selectResultSet("SELECT branch_id, COUNT(*) AS cnt FROM sheet1 GROUP BY branch_id;");
-try {
-    while(rs.next()) {
-        branchRemainingTotal.put(rs.getInt("branch_id"), rs.getInt("cnt"));
-    }
-} catch (Exception e) {}]]></StartupCode>
+	<Id>1775468180418</Id>
+	<Name><![CDATA[Box]]></Name>
 	<Generic>false</Generic>
 	<GenericParameter>
-		<Id>1775458701941</Id>
-		<Name><![CDATA[1775458701941]]></Name>
+		<Id>1775468180423</Id>
+		<Name><![CDATA[1775468180423]]></Name>
 		<GenericParameterValue Class="CodeValue">
 			<Code><![CDATA[T extends Agent]]></Code>
 		</GenericParameterValue>
 		<GenericParameterLabel>Generic parameter:</GenericParameterLabel>
 	</GenericParameter>
-	<FlowChartsUsage>ENTITY</FlowChartsUsage>
+	<FlowChartsUsage>MATERIAL_ITEM</FlowChartsUsage>
 	<SamplesToKeep>100</SamplesToKeep>
 	<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
 	<ElementsLimitValue>100</ElementsLimitValue>
@@ -34,16 +28,16 @@ try {
 			<Unit Class="SpeedUnits">MPS</Unit>
 		</VelocityCode>
 		<PhysicalLength Class="CodeUnitValue">
-			<Code><![CDATA[1]]></Code>
-			<Unit Class="LengthUnits">METER</Unit>
+			<Code><![CDATA[610]]></Code>
+			<Unit Class="LengthUnits">MILLIMETER</Unit>
 		</PhysicalLength>
 		<PhysicalWidth Class="CodeUnitValue">
-			<Code><![CDATA[1]]></Code>
-			<Unit Class="LengthUnits">METER</Unit>
+			<Code><![CDATA[610]]></Code>
+			<Unit Class="LengthUnits">MILLIMETER</Unit>
 		</PhysicalWidth>
 		<PhysicalHeight Class="CodeUnitValue">
-			<Code><![CDATA[1]]></Code>
-			<Unit Class="LengthUnits">METER</Unit>
+			<Code><![CDATA[300]]></Code>
+			<Unit Class="LengthUnits">MILLIMETER</Unit>
 		</PhysicalHeight>
 	</AgentProperties>
 	<EnvironmentProperties>
@@ -68,9 +62,9 @@ try {
 	</EnvironmentProperties>
 	<DatasetsCreationProperties>
 		<AutoCreate>true</AutoCreate>
-		<Id>1775458701935</Id>
+		<Id>1775468180417</Id>
 		<OccurrenceAtTime>true</OccurrenceAtTime>
-		<OccurrenceDate>1767229200000</OccurrenceDate>
+		<OccurrenceDate>1775548800000</OccurrenceDate>
 		<OccurrenceTime Class="CodeUnitValue">
 			<Code><![CDATA[0]]></Code>
 			<Unit Class="TimeUnits">SECOND</Unit>
@@ -81,10 +75,10 @@ try {
 		</RecurrenceCode>
 	</DatasetsCreationProperties>
 	<ScaleRuler>
-		<Id>1775458701939</Id>
+		<Id>1775468180421</Id>
 		<Name><![CDATA[scale]]></Name>
-		<X>-480</X>
-		<Y>-240</Y>
+		<X>0</X>
+		<Y>-150</Y>
 		<PublicFlag>false</PublicFlag>
 		<PresentationFlag>false</PresentationFlag>
 		<ShowLabel>false</ShowLabel>
@@ -97,12 +91,12 @@ try {
 		<Scale>10</Scale>
 		<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
 	</ScaleRuler>
-	<CurrentLevel>1775458701942</CurrentLevel>
-	<ConnectionsId>1775458701937</ConnectionsId>
+	<CurrentLevel>1775468180424</CurrentLevel>
+	<ConnectionsId>1775468180419</ConnectionsId>
 	<Variables xmlns:al="http://anylogic.com"/>
 	<AgentLinks>
 		<AgentLink>
-			<Id>1775458701937</Id>
+			<Id>1775468180419</Id>
 			<Name><![CDATA[connections]]></Name>
 			<X>50</X>
 			<Y>-50</Y>
@@ -125,10 +119,9 @@ try {
 			<LineArrowPosition>END</LineArrowPosition>
 		</AgentLink>
 	</AgentLinks>
-	<EmbeddedObjects xmlns:al="http://anylogic.com"/>
 	<Presentation>
 		<Level>
-			<Id>1775458701942</Id>
+			<Id>1775468180424</Id>
 			<Name><![CDATA[level]]></Name>
 			<X>0</X>
 			<Y>0</Y>
@@ -145,70 +138,4 @@ try {
 			<Presentation xmlns:al="http://anylogic.com"/>
 		</Level>
 	</Presentation>
-	<Areas>
-		<Area>
-			<Id>1778853344621</Id>
-			<Name><![CDATA[mainArea]]></Name>
-			<X>-40</X>
-			<Y>-40</Y>
-			<Label>
-				<X>0</X>
-				<Y>-10</Y>
-			</Label>
-			<PublicFlag>false</PublicFlag>
-			<PresentationFlag>true</PresentationFlag>
-			<ShowLabel>false</ShowLabel>
-			<Title/>
-			<Width>780</Width>
-			<Height>680</Height>
-		</Area>
-		<Area>
-			<Id>1778853365307</Id>
-			<Name><![CDATA[chartArea]]></Name>
-			<X>-1060</X>
-			<Y>-40</Y>
-			<Label>
-				<X>0</X>
-				<Y>-10</Y>
-			</Label>
-			<PublicFlag>false</PublicFlag>
-			<PresentationFlag>true</PresentationFlag>
-			<ShowLabel>false</ShowLabel>
-			<Title/>
-			<Width>780</Width>
-			<Height>680</Height>
-		</Area>
-		<Area>
-			<Id>1778853397749</Id>
-			<Name><![CDATA[processArea]]></Name>
-			<X>100</X>
-			<Y>-860</Y>
-			<Label>
-				<X>0</X>
-				<Y>-10</Y>
-			</Label>
-			<PublicFlag>false</PublicFlag>
-			<PresentationFlag>true</PresentationFlag>
-			<ShowLabel>false</ShowLabel>
-			<Title/>
-			<Width>2040</Width>
-			<Height>740</Height>
-		</Area>
-		<Area>
-			<Id>1778853446884</Id>
-			<Name><![CDATA[varArea]]></Name>
-			<X>-720</X>
-			<Y>-860</Y>
-			<Label>
-				<X>0</X>
-				<Y>-10</Y>
-			</Label>
-			<PublicFlag>false</PublicFlag>
-			<PresentationFlag>true</PresentationFlag>
-			<ShowLabel>false</ShowLabel>
-			<Title/>
-			<Width>660</Width>
-			<Height>740</Height>
-		</Area>
-	</Areas>
 </ActiveObjectClass>
