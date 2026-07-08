@@ -1,0 +1,11 @@
+# AnyLogic Temporary & Auto-generated Files
+*.log
+*.zip
+*.autosave
+*.original.alp
+
+# AnyLogic Database Temp Files
+*db.lck
+*db.log
+*db.backup
+*db.data
