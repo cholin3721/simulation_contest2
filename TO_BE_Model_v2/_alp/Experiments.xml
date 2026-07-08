@@ -29,7 +29,7 @@
 				<Z>0</Z>
 				<Rotation>0.0</Rotation>
 				<Color>-12490271</Color>
-				<Text><![CDATA[TO_BE_Model]]></Text>
+				<Text><![CDATA[TO_BE_Model_v2]]></Text>
 				<Font>
 					<Name><![CDATA[SansSerif]]></Name>
 					<Size>24</Size>
@@ -42,7 +42,7 @@
 		<PresentationProperties>
 			<EnableZoomAndPanning>true</EnableZoomAndPanning>
 			<ExecutionMode>realTimeScaled</ExecutionMode>
-			<Title>TO_BE_Model : Simulation</Title>
+			<Title>TO_BE_Model_v2 : Simulation</Title>
 			<EnableDeveloperPanel>true</EnableDeveloperPanel>
 			<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 			<RealTimeScale>1.0</RealTimeScale>

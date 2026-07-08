@@ -617,6 +617,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onAtExit]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[if (firstBoxTime < 0) firstBoxTime = time();]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit]]></Name>
@@ -755,9 +758,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[delay_Erector1.size() <= delay_Erector2.size()]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability]]></Name>
@@ -837,6 +837,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -928,6 +931,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -1283,7 +1289,7 @@
 			<Parameter>
 				<Name><![CDATA[destinationNode]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[col_A.get(indexS++ % col_A.size())]]></Code>
+					<Code><![CDATA[col_A.get(indexA++ % col_A.size())]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -1403,9 +1409,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
@@ -1418,9 +1421,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -1780,9 +1780,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
@@ -1795,9 +1792,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2031,6 +2025,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -2526,9 +2523,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
@@ -2541,9 +2535,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2903,9 +2894,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
@@ -2918,9 +2906,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -3222,9 +3207,6 @@
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[type]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[self.TYPE_EXIT_NUMBER]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition1]]></Name>
@@ -3240,21 +3222,37 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability1]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability2]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability3]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability4]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0.25]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability5]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[0]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
+<<<<<<< HEAD
 				<Value Class="CodeValue">
 					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
     // 1) 기존 슬롯 탐색
@@ -3314,6 +3312,8 @@
 }).getAsInt()
 ]]></Code>
 				</Value>
+=======
+>>>>>>> 5cc23afa6f92630c0fd382ee65d66874c985689e
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
@@ -3493,6 +3493,100 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
+<<<<<<< HEAD
+=======
+		<Id>1777359687535</Id>
+		<Name><![CDATA[delay2]]></Name>
+		<X>990</X>
+		<Y>-210</Y>
+		<Label>
+			<X>-5</X>
+			<Y>-15</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.cQty + 1.3 * agent.cSkuCnt + 24.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1777359687533</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+>>>>>>> 5cc23afa6f92630c0fd382ee65d66874c985689e
 		<Id>1777359710114</Id>
 		<Name><![CDATA[convey3]]></Name>
 		<X>525</X>
@@ -4009,6 +4103,100 @@
 		<QuantityColumn/>
 	</EmbeddedObject>
 	<EmbeddedObject>
+<<<<<<< HEAD
+=======
+		<Id>1777359771993</Id>
+		<Name><![CDATA[delay3]]></Name>
+		<X>680</X>
+		<Y>-340</Y>
+		<Label>
+			<X>-5</X>
+			<Y>-15</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<ActiveObjectClass>
+			<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+			<ClassName>Delay</ClassName>
+		</ActiveObjectClass>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.processmodeling</PackageName>
+				<ClassName>Delay</ClassName>
+				<ItemName>1412336242930</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
+		<Parameters>
+			<Parameter>
+				<Name><![CDATA[type]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[delayTime]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[2.1 * agent.bQty + 1.3 * agent.bSkuCnt + 1.6]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumCapacity]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[entityLocation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pushProtocol]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[restoreEntityLocationOnExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[forceStatisticsCollection]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onEnter]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onAtExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onExit]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[onRemove]]></Name>
+			</Parameter>
+		</Parameters>
+		<ReplicationFlag>false</ReplicationFlag>
+		<Replication Class="CodeValue">
+			<Code><![CDATA[100]]></Code>
+		</Replication>
+		<CollectionType>ARRAY_LIST_BASED</CollectionType>
+		<InitialLocationType>XYZ</InitialLocationType>
+		<ColumnCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</ColumnCode>
+		<RowCode Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</RowCode>
+		<LocationNameCode Class="CodeValue">
+			<Code><![CDATA[""]]></Code>
+		</LocationNameCode>
+		<InitializationType>SPECIFIED_NUMBER</InitializationType>
+		<InitializationDatabaseTableQuery>
+			<Id>1777359771991</Id>
+			<TableReference/>
+		</InitializationDatabaseTableQuery>
+		<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+		<QuantityColumn/>
+	</EmbeddedObject>
+	<EmbeddedObject>
+>>>>>>> 5cc23afa6f92630c0fd382ee65d66874c985689e
 		<Id>1777359846264</Id>
 		<Name><![CDATA[selectOutput3]]></Name>
 		<X>740</X>
@@ -4122,6 +4310,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4210,6 +4401,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -4596,26 +4790,20 @@
 				<Name><![CDATA[exitNumber]]></Name>
 				<Value Class="CodeValue">
 					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
-    // 1) 기존 슬롯 탐색
+    if (agent.slotIndex >= 0) return agent.slotIndex + 1;
     int target = -1;
     for (int i = 0; i < 4; i++) {
         if (slotBranches[i] == agent.branchId) { target = i; break; }
     }
-    
-    // 2) 없으면 빈 슬롯 할당 + batchSize 초기 설정
     if (target == -1) {
         for (int i = 0; i < 4; i++) {
             if (slotBranches[i] == 0) {
                 slotBranches[i] = agent.branchId;
                 target = i;
-                int rem = branchRemainingTotal.getOrDefault(agent.branchId, 0);
-                batchSizes[target] = min(32, rem);
                 break;
             }
         }
     }
-    
-    // 3) 빈 슬롯도 없으면 잔여량 가장 적은 슬롯 강제 할당
     if (target == -1) {
         int minRem = Integer.MAX_VALUE;
         for (int i = 0; i < 4; i++) {
@@ -4623,13 +4811,9 @@
             if (rem < minRem) { minRem = rem; target = i; }
         }
     }
-    
-    // 4) Box에 슬롯 번호 저장
     agent.slotIndex = target;
-    
     return target + 1;
-}).getAsInt()
-]]></Code>
+}).getAsInt()]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -4637,9 +4821,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("branch=" + agent.branchId + " slot=" + agent.slotIndex);]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit1]]></Name>
@@ -5302,7 +5483,11 @@
 			<Parameter>
 				<Name><![CDATA[onAtExit]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("Delay6 탈출");]]></Code>
+					<Code><![CDATA[totalBoxes++;
+totalQty += agent.sQty + agent.aQty + agent.bQty + agent.cQty;
+if (totalBoxes % 500 == 0) {
+    traceln("KPI: time=" + time() + " boxes=" + totalBoxes + " qty=" + totalQty);
+}]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5395,10 +5580,14 @@
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
 				<Value Class="CodeValue">
+<<<<<<< HEAD
 					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
     return agent.slotIndex + 1;
 }).getAsInt()
 ]]></Code>
+=======
+					<Code><![CDATA[agent.slotIndex + 1]]></Code>
+>>>>>>> 5cc23afa6f92630c0fd382ee65d66874c985689e
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -5406,33 +5595,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7 In");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit1]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-1 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit2]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-2 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit3]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-3 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit4]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("selectOutput7-4 Out");]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onExit5]]></Name>
@@ -6140,7 +6314,7 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[traceln("sink");]]></Code>
+					<Code><![CDATA[lastBoxTime = time();]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -6666,6 +6840,9 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[4]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -6958,9 +7135,6 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[customizeTransporterChoice]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterChoiceCondition]]></Name>
@@ -6973,9 +7147,6 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[-transporter.distanceTo(agent)]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
