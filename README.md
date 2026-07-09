@@ -1,8 +1,8 @@
 # 제23회 한국 대학생 컴퓨터 시뮬레이션 경진대회
 
-**팀원:** 202444085  
-**주제:** K-Logistics 풀필먼트 센터 피킹 프로세스 최적화  
-**도구:** AnyLogic Personal Learning Edition
+**팀원:** 202444085 (인하이트)  
+**주제:** K-Logistics 풀필먼트 센터 피킹 프로세스 효율화  
+**도구:** AnyLogic Personal Learning Edition 8.9.8
 
 ---
 
@@ -10,103 +10,131 @@
 
 ### K-Logistics 풀필먼트 센터 구조
 
-전국 60개 지점(Type A 30개 / Type B 20개 / Type C 10개)의 주문 박스를 피킹하여 파렛타이징하는 물류 센터.
+전국 **60개 지점**(Type A 30 · B 20 · C 10)의 주문 **8,858박스**를 제함 → 피킹 → 봉함 → 팔레타이징하는 허브 물류센터.
 
 ```
 [제함기1/2/3] → [S/A: AGV 이동] → [컨베이어] → [봉함기] → [파렛타이저(4슬롯)] → 출하
                → [B/C: 컨베이어]  ↗
 ```
 
-### 주요 설비 스펙
+### 주요 설비 스펙 (모델 기준)
 
-| 설비 | 수량 | 처리 속도 |
-|------|------|----------|
-| 제함기 | 3대 | 2초/박스 |
-| AGV | 40대 | 1.5 m/s, 적재/하역 5초 |
+| 설비 | 수량 | 처리 속도 / 비고 |
+|------|------|------------------|
+| 제함기 | 3대 | 2초/박스, **capacity 4** (병렬) |
+| AGV | AS-IS **40대** / TO-BE **25대** (`agvCount`) | 1.5 m/s, 적재·하역 각 5초 |
 | 컨베이어 | - | 0.5 m/s |
-| 봉함기 | - | 25 박스/분 |
-| 파렛타이저 | 2대 × 2슬롯 = 4슬롯 | 15 박스/분 |
+| 봉함기 | - | 25 box/min |
+| 파렛타이저 | 2대 × 2슬롯 = 4슬롯 | 15 box/min, 팔레트당 최대 32박스 |
 
-### 지점별 주문 규모
+### 주문 데이터 (내장 DB)
 
-| 타입 | 지점 수 | 박스 수 |
-|------|---------|--------|
-| A | 30개 | 180~200 박스 |
-| B | 20개 | 120~150 박스 |
-| C | 10개 | 30~80 박스 |
+| 항목 | 값 |
+|------|-----|
+| 총 박스 | 8,858 |
+| 지점 수 | 60 |
+| S/A 포함 (실측) | **8,120 (91.7%)** |
+| B/C 전용 (실측) | **738 (8.3%)** |
+| 저장 위치 | `To_Be_Model/database/db.script` · `AS_IS_Model/database/db.script` |
 
-총 예상 박스 수: 약 8,950개
+> **참고:** SKU 독립 확률 이론값 P(S∪A)=**75%**와 실제 DB **91.7%**는 다릅니다. 시뮬레이션은 **실제 주문 DB**를 사용합니다.
 
 ### AS-IS 병목 원인
 
-SKU 구성 확률: S(50%), A(50%), B(30%), C(5%) (독립 사건)
-
-- **P(S 또는 A 포함) = 1 - 0.5×0.5 = 75%**
-- 현행 라우팅: `agent.sSkuCnt > 0 || agent.aSkuCnt > 0` → 모두 제함기1로 집중
-- 제함기1이 전체 박스의 75%를 단독 처리 → 극심한 병목
-- 5시간 PLE 제한 내 처리 완료: **8팔레트(256박스)** = 전체의 약 2.9%
+- 라우팅: `agent.sSkuCnt > 0 || agent.aSkuCnt > 0` → **제함기1 집중**
+- 제함기2 유휴, S/A 물량이 한 라인에 몰림
+- 시뮬레이션 시간: **18,000초 (5시간)**, 종료 조건: **Stop at specified time**
 
 ---
 
 ## 개선 모델 (TO-BE)
 
-### 개선 방향
+### 코드에 반영된 3가지 개선 (슬라이드 13)
 
-1. **제함기 부하 분산**: S/A 박스를 제함기1/2에 고르게 배분
-2. **슬롯 배정 최적화**: 지점별 잔여 박스 기반 파렛타이저 슬롯 동적 할당
-3. **AGV 운영 효율화**: 불필요한 경로 최소화
+| # | 위치 | 내용 |
+|---|------|------|
+| 1 | `selectOutput1` | `delay_Erector1.size() <= delay_Erector2.size()` — 제함기 부하 분산 |
+| 2 | `moveByTransporter` ×5 | `-unit.distanceTo(agent)` 최근접 배차 · `agvCount = 25` |
+| 3 | `selectOutput6/7` | `branchRemainingTotal` · `slotBranches[4]` 동적 슬롯 배정 |
+
+### 안정화 설정 (교착 방지, 발표 부록 권장)
+
+| 항목 | 설정 |
+|------|------|
+| `transporterFleet` | `recognizeAllTransporters = true` |
+| | `delayToResumeMovement = 1초` |
+| 경로 용량 | `path29`=2대, `path67/68`=1대, `path21`=2대 |
+
+### B존 라우팅 (주의)
+
+- **`selectOutput5`**: B존 컨베이어 **25%×4 확률 분기**만 담당
+- **팔레타이저 슬롯 로직**은 `selectOutput6` / `selectOutput7`에만 있음
 
 ### 핵심 비교 지표 (5시간 기준)
 
-- 완료 팔레트 수 (박스 수)
-- 시간당 처리량 (팔레트/hr)
+- 완료 팔레트·박스 수
+- 시간당 처리량 (box/hr)
 - 완료 지점 수 (N / 60)
-- 제함기 가동률
-- AGV 가동률
+- 제함기·AGV 가동률
+
+> KPI 수치는 AnyLogic **Charts** 탭에서 AS-IS / TO-BE 각각 18,000초 실행 후 확인하세요.  
+> 발표 자료 수치 갱신 가이드: [`PRESENTATION_CHECKLIST.md`](PRESENTATION_CHECKLIST.md)
 
 ---
 
 ## 폴더 구조
 
 ```
-simulation/
-├── AS_IS_Model/               ← AS-IS 기준 모델
-│   ├── _alp/                  ← XML 소스 (AnyLogic 편집용)
-│   │   ├── Agents/Main/       ← 메인 에이전트 (프로세스 로직)
-│   │   ├── Agents/AGV/        ← AGV 에이전트
-│   │   ├── Agents/Box/        ← 박스 에이전트
-│   │   ├── Experiments.xml    ← 시뮬레이션 실행 설정
-│   │   └── ModelResources.xml
-│   ├── 3d/                    ← AGV·박스 3D 모델 (.dae)
-│   ├── database/              ← 내장 HSQLDB (주문 데이터)
-│   └── AS_IS_Model.alpx       ← AnyLogic 프로젝트 파일
-├── TO_BE_Model/               ← TO-BE 개선 모델 (AS_IS 기반 복사)
-│   ├── _alp/
-│   │   ├── Agents/Main/
-│   │   ├── Agents/AGV/
-│   │   ├── Agents/Box/
-│   │   ├── Experiments.xml
-│   │   └── ModelResources.xml
+simulation_contest2/
+├── AS_IS_Model/
+│   ├── _alp/Agents/Main/       ← 프로세스 로직 (XML)
+│   ├── database/               ← 주문 HSQLDB
 │   ├── 3d/
+│   └── AS_IS_Model.alpx
+├── To_Be_Model/                ← TO-BE 개선 모델 (폴더명 대소문자 주의)
+│   ├── _alp/Agents/Main/
 │   ├── database/
-│   └── TO_BE_Model.alpx       ← AnyLogic 프로젝트 파일 (더블클릭으로 열기)
-├── simulation_orders.xlsx     ← 주문 데이터 (60개 지점, SKU별 수량)
-├── simulation_rules.md        ← 모델 설계 규칙 메모
-├── 제23회 한국 대학생 컴퓨터 시뮬레이션 경진대회 예선 문제_수정.pdf
-├── 제23회 한국 대학생 컴퓨터 시뮬레이션 경진대회 안내 및 규칙.pdf
+│   ├── 3d/
+│   └── To_Be_Model.alpx
+├── TO_BE_Model_v2/             ← 별도 프로토타입 (본선 발표 모델 아님)
+├── simulation_rules.md
+├── PRESENTATION_CHECKLIST.md   ← PPT 슬라이드별 수정 체크리스트
+├── K-Logistics_...발표.pptx
 └── README.md
 ```
 
+---
+
 ## 실행 방법
 
-| 모델 | 파일 경로 |
-|------|----------|
-| AS-IS (기준) | `AS_IS_Model/AS_IS_Model.alpx` |
-| TO-BE (개선) | `TO_BE_Model/TO_BE_Model.alpx` |
+### 1. 클론
 
-1. 위 `.alpx` 파일 더블클릭 → AnyLogic 자동 실행
-2. Run → Simulation 실행
-3. 좌측 chartArea에서 실시간 지표 확인
-4. 5시간(18,000초) 후 자동 종료 (PLE 제한)
+```bash
+git clone https://github.com/cholin3721/simulation_contest2.git
+cd simulation_contest2
+```
 
-> **주의:** AnyLogic Personal Learning Edition은 Material Handling Library 사용 시 시뮬레이션 시간이 5시간으로 제한됩니다.
+### 2. AnyLogic에서 열기
+
+| 모델 | 파일 |
+|------|------|
+| AS-IS | `AS_IS_Model/AS_IS_Model.alpx` |
+| TO-BE | `To_Be_Model/To_Be_Model.alpx` |
+
+1. `.alpx` 더블클릭 → AnyLogic 실행  
+2. TO-BE: Main 화면에서 **`agvCount = 25`** 확인 (UI 파라미터)  
+3. **Run → Simulation**  
+4. **Charts** 탭에서 KPI 확인  
+5. **18,000초** 후 자동 종료 (PLE 5시간 제한)
+
+### 3. 발표 자료와 맞추기
+
+- PPT 문구·수치 수정 목록: [`PRESENTATION_CHECKLIST.md`](PRESENTATION_CHECKLIST.md)
+- 코드와 다른 API 표기: 슬라이드의 `transporter` → 실제 코드는 **`unit.distanceTo(agent)`**
+
+---
+
+## 관련 문서
+
+- [`simulation_rules.md`](simulation_rules.md) — 스테이션·랙·C급 존 모델링 규칙
+- [`PRESENTATION_CHECKLIST.md`](PRESENTATION_CHECKLIST.md) — 슬라이드별 「이 문장 → 이렇게」 체크리스트
