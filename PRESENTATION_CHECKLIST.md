@@ -3,7 +3,8 @@
 코드 기준: `To_Be_Model/To_Be_Model.alpx` (커밋 `c971aa9` 이후)  
 주문 DB: `To_Be_Model/database/db.script` · **8,858박스 · 60지점 · S/A 실측 91.7%**
 
-> **KPI 숫자(256→640, 23%→44% 등)** 는 안정화 패치 이후 **재시뮬 1회** 돌리고 Charts 탭에서 갱신하세요. 아래 표의 「재측정」 항목만 바꾸면 됩니다.
+> ✅ **재측정 완료 (18,000초):** AS-IS 8팔레트/256박스/1.6·hr/23% · **TO-BE 21팔레트/672박스/4.2·hr/50%/3·60 · +162%**
+> PPT(`...095810.updated.pptx`)·보고서·매뉴얼에 이미 반영됨. 최종 대조는 [`FINAL_CONFIRMATION.md`](FINAL_CONFIRMATION.md) 참고.
 
 ---
 
