@@ -29,6 +29,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[recognizeAllTransporters]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacityDefinitionType]]></Name>
@@ -36,7 +39,7 @@
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
 				<Value Class="CodeValue">
-					<Code><![CDATA[25]]></Code>
+					<Code><![CDATA[agvCount]]></Code>
 				</Value>
 			</Parameter>
 			<Parameter>
@@ -140,6 +143,10 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[delayToResumeMovement]]></Name>
+				<Value Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[delayForRouteCalculation]]></Name>
@@ -755,9 +762,15 @@
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[conditionIsProbabilistic]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[false]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[condition]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[delay_Erector1.size() <= delay_Erector2.size()]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[probability]]></Name>
@@ -767,6 +780,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
@@ -1415,12 +1431,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.DISPATCHING_POLICY_BASED_ON_RATING_VALUE]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterComparison]]></Name>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-unit.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -1786,12 +1808,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.DISPATCHING_POLICY_BASED_ON_RATING_VALUE]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterComparison]]></Name>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-unit.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2529,12 +2557,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.DISPATCHING_POLICY_BASED_ON_RATING_VALUE]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterComparison]]></Name>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-unit.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -2900,12 +2934,18 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.DISPATCHING_POLICY_BASED_ON_RATING_VALUE]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterComparison]]></Name>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-unit.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>
@@ -3252,71 +3292,9 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[exitNumber]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[((java.util.function.IntSupplier) () -> {
-    // 1) 기존 슬롯 탐색
-    int target = -1;
-    for (int i = 0; i < 4; i++) {
-        if (slotBranches[i] == agent.branchId) { target = i; break; }
-    }
-
-    // 2) 없으면 빈 슬롯 할당
-    boolean wasNewlyAssigned = false;
-    if (target == -1) {
-        for (int i = 0; i < 4; i++) {
-            if (slotBranches[i] == 0) {
-                slotBranches[i] = agent.branchId;
-                target = i;
-                wasNewlyAssigned = true;
-                batchSizes[target] = min(32, branchRemainingTotal.getOrDefault(agent.branchId, 0));
-                break;
-            }
-        }
-    }
-
-    // 3) 빈 슬롯도 없으면 잔여량 가장 적은 슬롯 강제 할당
-    if (target == -1) {
-        int minRem = Integer.MAX_VALUE;
-        for (int i = 0; i < 4; i++) {
-            int rem = branchRemainingTotal.getOrDefault(slotBranches[i], 0);
-            if (rem < minRem) { minRem = rem; target = i; }
-        }
-    }
-
-    // 4) back-pressure: Step2에서 새로 배정 + 비어있는 altTarget이 있을 때만
-    if (wasNewlyAssigned) {
-        int[] laneSizes = {
-            convey3.size(), convey4.size(), convey5.size(), convey6.size()
-        };
-        if (laneSizes[target] >= 2) {
-            int altTarget = -1;
-            int minSize = Integer.MAX_VALUE;
-            for (int i = 0; i < 4; i++) {
-                if (slotBranches[i] == 0 && laneSizes[i] < minSize) {
-                    minSize = laneSizes[i];
-                    altTarget = i;
-                }
-            }
-            if (altTarget != -1) {
-                slotBranches[target] = 0;
-                slotBranches[altTarget] = agent.branchId;
-                batchSizes[altTarget] = min(32, branchRemainingTotal.getOrDefault(agent.branchId, 0));
-                target = altTarget;
-            }
-        }
-    }
-
-    agent.slotIndex = target;
-    return target + 1;
-}).getAsInt()
-]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[choiceIsVolatile]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[true]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[onEnter]]></Name>
@@ -6943,12 +6921,18 @@ traceln("batch3 Out branchId=" + branchId3 + " rem=" + rem3);]]></Code>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[dispatchingPolicy]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[self.DISPATCHING_POLICY_BASED_ON_RATING_VALUE]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterComparison]]></Name>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[transporterRating]]></Name>
+				<Value Class="CodeValue">
+					<Code><![CDATA[-unit.distanceTo(agent)]]></Code>
+				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[seizeAtDowntimePolicy]]></Name>

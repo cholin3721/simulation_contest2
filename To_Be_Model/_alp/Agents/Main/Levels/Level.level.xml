@@ -9170,8 +9170,8 @@
 					<Code><![CDATA[10.0]]></Code>
 					<Unit Class="SpeedUnits">MPS</Unit>
 				</SpeedLimitValue>
-				<LimitNumberOfTransporters>false</LimitNumberOfTransporters>
-				<LimitNumberOfTransportersValue>10</LimitNumberOfTransportersValue>
+				<LimitNumberOfTransporters>true</LimitNumberOfTransporters>
+				<LimitNumberOfTransportersValue>2</LimitNumberOfTransportersValue>
 			</Path>
 			<PointNode>
 				<Id>1775732162223</Id>
@@ -10059,8 +10059,8 @@
 					<Code><![CDATA[10.0]]></Code>
 					<Unit Class="SpeedUnits">MPS</Unit>
 				</SpeedLimitValue>
-				<LimitNumberOfTransporters>false</LimitNumberOfTransporters>
-				<LimitNumberOfTransportersValue>10</LimitNumberOfTransportersValue>
+				<LimitNumberOfTransporters>true</LimitNumberOfTransporters>
+				<LimitNumberOfTransportersValue>2</LimitNumberOfTransportersValue>
 			</Path>
 			<Path SourceId="1775467345497" TargetId="1778839540174">
 				<Id>1778830911499</Id>
@@ -12828,8 +12828,8 @@
 					<Code><![CDATA[10.0]]></Code>
 					<Unit Class="SpeedUnits">MPS</Unit>
 				</SpeedLimitValue>
-				<LimitNumberOfTransporters>false</LimitNumberOfTransporters>
-				<LimitNumberOfTransportersValue>10</LimitNumberOfTransportersValue>
+				<LimitNumberOfTransporters>true</LimitNumberOfTransporters>
+				<LimitNumberOfTransportersValue>1</LimitNumberOfTransportersValue>
 			</Path>
 			<PointNode>
 				<Id>1778839531822</Id>
@@ -12915,8 +12915,8 @@
 					<Code><![CDATA[10.0]]></Code>
 					<Unit Class="SpeedUnits">MPS</Unit>
 				</SpeedLimitValue>
-				<LimitNumberOfTransporters>false</LimitNumberOfTransporters>
-				<LimitNumberOfTransportersValue>10</LimitNumberOfTransportersValue>
+				<LimitNumberOfTransporters>true</LimitNumberOfTransporters>
+				<LimitNumberOfTransportersValue>1</LimitNumberOfTransportersValue>
 			</Path>
 			<Path SourceId="1778839540174" TargetId="1778830768710">
 				<Id>1778839539679</Id>

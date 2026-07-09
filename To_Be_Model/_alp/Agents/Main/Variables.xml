@@ -198,6 +198,28 @@
 			</InitialValue>
 		</Properties>
 	</Variable>
+	<Variable Class="PlainVariable">
+		<Id>1779600000001</Id>
+		<Name><![CDATA[agvCount]]></Name>
+		<X>-460</X>
+		<Y>-130</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>true</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Properties SaveInSnapshot="true"
+              Constant="false"
+              AccessType="public"
+              StaticVariable="false">
+			<Type><![CDATA[int]]></Type>
+			<InitialValue Class="CodeValue">
+				<Code><![CDATA[25]]></Code>
+			</InitialValue>
+		</Properties>
+	</Variable>
 	<Variable Class="CollectionVariable">
 		<Id>1775734326130</Id>
 		<Name><![CDATA[col_S]]></Name>

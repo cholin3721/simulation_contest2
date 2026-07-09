@@ -77,7 +77,7 @@
 				<InitialDate>1775433600000</InitialDate>
 				<InitialTime>0.0</InitialTime>
 				<FinalDate>1778025600000</FinalDate>
-				<FinalTime>21600.0</FinalTime>
+				<FinalTime>18000.0</FinalTime>
 			</ModelTimeProperties>
 			<AnimationProperties>
 				<StopNever>true</StopNever>
