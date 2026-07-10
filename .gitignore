@@ -9,3 +9,17 @@
 *db.log
 *db.backup
 *db.data
+
+# Python / agent workspace artifacts
+__pycache__/
+*.pyc
+
+# Local verification & extraction scratch files
+_verify_*.txt
+_extract_*.txt
+_sync_log.txt
+_count_qty.py
+
+# Office lock / duplicate export files
+~$*
+*.updated.pptx
