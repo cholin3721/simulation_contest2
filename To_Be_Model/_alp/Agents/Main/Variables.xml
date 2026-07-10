@@ -207,7 +207,7 @@
 			<X>10</X>
 			<Y>0</Y>
 		</Label>
-		<PublicFlag>true</PublicFlag>
+		<PublicFlag>false</PublicFlag>
 		<PresentationFlag>true</PresentationFlag>
 		<ShowLabel>true</ShowLabel>
 		<Properties SaveInSnapshot="true"

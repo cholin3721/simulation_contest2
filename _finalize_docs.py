@@ -4,6 +4,8 @@ import zipfile
 import re
 from pptx import Presentation
 
+from _ppt_preserve_font import replace_in_shape_preserve
+
 ROOT = Path(__file__).parent
 PPT = ROOT / "K-Logistics_풀필먼트_센터_피킹_프로세스_효율화___인하이트_본선_발표_20260706095810.pptx"
 MANUAL = ROOT / "제23회한국대학생컴퓨터시뮬레이션경진대회_인하이트사용자매뉴얼.docx"
@@ -126,20 +128,8 @@ def replace_in_ppt(path: Path):
     n = 0
     for slide in prs.slides:
         for shape in slide.shapes:
-            if getattr(shape, "has_text_frame", False) and shape.has_text_frame:
-                t = shape.text
-                u = apply_replacements(t, pairs)
-                if u != t:
-                    shape.text = u
-                    n += 1
-            if getattr(shape, "has_table", False) and shape.has_table:
-                for row in shape.table.rows:
-                    for cell in row.cells:
-                        t = cell.text
-                        u = apply_replacements(t, pairs)
-                        if u != t:
-                            cell.text = u
-                            n += 1
+            if replace_in_shape_preserve(shape, pairs):
+                n += 1
     prs.save(path)
     return n
 
