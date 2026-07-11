@@ -23,6 +23,13 @@
 				<ItemName>1521021419454</ItemName>
 			</GenericParameterSubstituteReference>
 		</GenericParameterSubstitute>
+		<GenericParameterSubstitute>
+			<GenericParameterSubstituteReference>
+				<PackageName>com.anylogic.libraries.material_handling</PackageName>
+				<ClassName>TransporterFleet</ClassName>
+				<ItemName>1742805536237</ItemName>
+			</GenericParameterSubstituteReference>
+		</GenericParameterSubstitute>
 		<Parameters>
 			<Parameter>
 				<Name><![CDATA[navigationType]]></Name>
@@ -202,6 +209,54 @@
 			<Parameter>
 				<Name><![CDATA[onExitNode]]></Name>
 			</Parameter>
+			<Parameter>
+				<Name><![CDATA[turnOnPath]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[rotationSpeed]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[isTugger]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[trailersGenerationType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maxNumberOfLoads]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[newTrailer]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[trailersNumberType]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[initialNumberOfTrailers]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[maximumNumberOfTrailers]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[tuggerTrailerGap]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[addTrailerToCustomPopulation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[trailersPopulation]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[preferPartiallyFilledTransporters]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[deliveryStartPolicy]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[condition]]></Name>
+			</Parameter>
+			<Parameter>
+				<Name><![CDATA[pickupTimeout]]></Name>
+			</Parameter>
 		</Parameters>
 		<ReplicationFlag>false</ReplicationFlag>
 		<Replication Class="CodeValue">
@@ -286,7 +341,7 @@
 			<Parameter>
 				<Name><![CDATA[databaseTable]]></Name>
 				<Value Class="DatabaseContextTableCodeValue">
-					<Id>0</Id>
+					<Id>1775458689999</Id>
 					<TableReference>
 						<PackageName>to_be_model</PackageName>
 						<ClassName>sheet1</ClassName>
@@ -853,9 +908,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[4]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -947,9 +999,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[4]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
@@ -2053,9 +2102,6 @@
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[capacity]]></Name>
-				<Value Class="CodeValue">
-					<Code><![CDATA[4]]></Code>
-				</Value>
 			</Parameter>
 			<Parameter>
 				<Name><![CDATA[maximumCapacity]]></Name>
