@@ -208,7 +208,7 @@
 			<Y>0</Y>
 		</Label>
 		<PublicFlag>false</PublicFlag>
-		<PresentationFlag>true</PresentationFlag>
+		<PresentationFlag>false</PresentationFlag>
 		<ShowLabel>true</ShowLabel>
 		<Properties SaveInSnapshot="true"
               Constant="false"
@@ -216,7 +216,7 @@
               StaticVariable="false">
 			<Type><![CDATA[int]]></Type>
 			<InitialValue Class="CodeValue">
-				<Code><![CDATA[25]]></Code>
+				<Code><![CDATA[20]]></Code>
 			</InitialValue>
 		</Properties>
 	</Variable>
@@ -280,4 +280,4 @@
 			<ValueElementClass>Integer</ValueElementClass>
 		</Properties>
 	</Variable>
-</Variables>
+</Variables>

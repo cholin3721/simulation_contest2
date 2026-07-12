@@ -14950,7 +14950,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("AGV 가동률: %.1f%%", transporterFleet.numberOfBusy() / (double)transporterFleet.size() * 100)</TextCode>
 		<Font>
@@ -14976,7 +14976,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("투입구1: %d개  투입구2: %d개", delay12.size(), delay11.size())</TextCode>
 		<Font>
@@ -15002,7 +15002,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("제함기1: %.1f%%  2: %.1f%%  3: %.1f%%", delay_Erector1.statsUtilization.mean()*100, delay_Erector2.statsUtilization.mean()*100, delay_Erector3.statsUtilization.mean()*100)</TextCode>
 		<Font>
@@ -15028,7 +15028,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("큐1: %d  큐2: %d  큐3: %d", queue.size(), queue1.size(), queue2.size())</TextCode>
 		<Font>
@@ -15054,7 +15054,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("완료 박스: %d개", sink1.count())</TextCode>
 		<Font>
@@ -15080,7 +15080,7 @@
 		<EmbeddedIcon>false</EmbeddedIcon>
 		<Z>0</Z>
 		<Rotation>0.0</Rotation>
-		<Color>-1</Color>
+		<Color>-16777216</Color>
 		<Text><![CDATA[null]]></Text>
 		<TextCode>String.format("재공품(WIP): %d개", source.count() - sink1.count())</TextCode>
 		<Font>
